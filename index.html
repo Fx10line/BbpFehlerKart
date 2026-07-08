@@ -6,104 +6,90 @@
     <title>BBP - Quality Control System</title>
     
     <style>
+/* ========================================================================= */
+/* 🔻 MODÜL 1 BAŞLANGIÇ: KASA VE BOYA (CSS - TASARIM MODÜLÜ) 🔻               */
+/* ========================================================================= */
         :root {
             --header-bg: #0f2b46;       
             --bg-color: #f8f9fa;        
             --text-dark: #1a1a1a;       
             --text-muted: #6c757d;      
             --success: #2ecc71;         
-            --c1-bg: #eaf3fa; --c1-accent: #0d5bb5; 
-            --c2-bg: #eaf5eb; --c2-accent: #1e7e34; 
-            --c3-bg: #fff7e6; --c3-accent: #e59400; 
-            --c4-bg: #f4ebfa; --c4-accent: #6f42c1; 
-            --c5-bg: #faebeb; --c5-accent: #c92a2a; 
-            --c6-bg: #e6f6f8; --c6-accent: #0b7285; 
         }
-
         * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
         body { margin: 0; background-color: var(--bg-color); display: flex; flex-direction: column; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
 
-        /* --- HEADER --- */
         header { background-color: var(--header-bg); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; }
         .header-left { display: flex; align-items: center; gap: 15px; }
         .warning-icon { width: 40px; height: 40px; border: 2px solid white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; }
-        .header-title h1 { margin: 0; font-size: 22px; font-weight: 600; }
+        .header-title h1 { margin: 0; font-size: 20px; font-weight: 600; }
         .header-title p { margin: 2px 0 0 0; font-size: 13px; color: #a0aec0; }
-        
         .header-right { display: flex; gap: 10px; align-items: center; }
-        .btn-settings { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 6px; padding: 8px 12px; cursor: pointer; font-weight: bold; font-size: 16px; }
         
-        .lang-switcher { display: flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 8px; color: white; }
-        .lang-switcher select { background: transparent; color: white; border: none; font-size: 16px; font-weight: bold; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; }
+        .btn-settings { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 6px; padding: 8px 12px; cursor: pointer; font-size: 16px; }
+        .lang-switcher select { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; padding: 8px; font-size: 16px; font-weight: bold; outline: none; cursor: pointer; }
         .lang-switcher select option { color: var(--text-dark); background: white; }
 
         .main-content { flex: 1; padding: 20px; max-width: 1000px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; }
 
-        /* --- SETUP VIEW --- */
         #setup-view { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; animation: fadeIn 0.4s ease; padding-bottom: 20px; }
-        .setup-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); width: 100%; max-width: 450px; border-top: 6px solid var(--success); }
+        .setup-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); width: 100%; max-width: 500px; border-top: 6px solid var(--success); }
         .setup-card h2 { margin-top: 0; color: var(--header-bg); text-align: center; font-size: 20px; }
         .setup-card p { color: var(--text-muted); text-align: center; font-size: 14px; margin-bottom: 20px; }
         
-        .setup-row { display: flex; gap: 10px; margin-bottom: 12px; }
-        .setup-group { flex: 1; display: flex; flex-direction: column; }
-        .setup-group label { font-size: 12px; font-weight: bold; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
-        .setup-group input, .setup-group select { width: 100%; height: 44px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; background: white; }
-        
+        .setup-row { display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px; }
+        .setup-group { width: 100%; display: flex; flex-direction: column; }
+        .setup-group label { font-size: 12px; font-weight: bold; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; }
+        .setup-group input, .setup-group select { width: 100%; height: 50px; padding: 10px 15px; border: 1px solid #ced4da; border-radius: 8px; font-size: 16px; background: white; box-sizing: border-box; }
+        input[type="date"] { text-align: left; -webkit-appearance: none; }
         .btn-start { width: 100%; background: var(--success); color: white; border: none; height: 50px; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.2s; }
-        .btn-start:active { transform: scale(0.98); }
-
-        /* --- DASHBOARD VIEW --- */
-        #dashboard-view { display: none; animation: fadeIn 0.3s ease; }
-        .instruction { text-align: center; margin-bottom: 25px; }
-        .instruction h2 { margin: 0; font-size: 18px; color: var(--text-dark); }
-        .instruction p { margin: 2px 0 0 0; font-size: 14px; color: var(--text-muted); }
         
+        #dashboard-view { display: none; animation: fadeIn 0.3s ease; }
+        .instruction { text-align: center; margin-bottom: 20px; }
         .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .card { border-radius: 12px; padding: 25px 20px; position: relative; cursor: pointer; text-align: center; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.1s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; align-items: center; background: white; }
-        .card:active { transform: scale(0.97); }
-        .badge { position: absolute; top: 15px; left: 15px; color: white; background: var(--header-bg); font-weight: bold; font-size: 16px; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 10; }
-        .arrow { position: absolute; bottom: 15px; right: 15px; width: 28px; height: 28px; border-radius: 50%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .card-img-wrapper { width: 100%; height: 110px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
+        .card { border-radius: 12px; padding: 25px 20px; position: relative; cursor: pointer; text-align: center; border: 1px solid rgba(0,0,0,0.05); background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .badge { position: absolute; top: 15px; left: 15px; color: white; background: var(--header-bg); font-weight: bold; font-size: 16px; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .card-img-wrapper { font-size: 50px; margin-bottom: 10px; }
         .card-title { font-size: 17px; font-weight: bold; margin: 0; color: var(--text-dark); }
         .card-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 5px; }
 
-        /* --- FORM VIEW --- */
         #form-view { display: none; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .back-btn { background: none; border: none; color: var(--header-bg); font-size: 16px; font-weight: bold; padding: 10px 0 20px 0; cursor: pointer; display: flex; align-items: center; gap: 5px; }
         .form-header-title { font-size: 22px; color: var(--header-bg); margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        
         .error-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
-        .error-name { flex: 1; padding-right: 10px; }
-        .error-name strong { display: block; font-size: 15px; color: var(--text-dark); margin-bottom: 3px; }
+        .error-name strong { display: block; font-size: 15px; color: var(--text-dark); }
         .error-name span { font-size: 12px; color: var(--text-muted); font-style: italic; }
         .counter { display: flex; align-items: center; gap: 8px; }
-        .btn-count { background: #e0e6ed; border: none; color: var(--header-bg); width: 40px; height: 40px; border-radius: 8px; font-size: 22px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .btn-count:active { background: #cbd5e1; }
-        .count-input { width: 55px; height: 40px; text-align: center; font-size: 18px; font-weight: bold; border: 1px solid #ccc; border-radius: 8px; }
-        .btn-submit { display: block; width: 100%; padding: 16px; background: var(--success); color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin-top: 25px; cursor: pointer; }
+        .btn-count { background: #e0e6ed; border: none; width: 44px; height: 44px; border-radius: 8px; font-size: 24px; font-weight: bold; cursor: pointer; }
+        .count-input { width: 60px; height: 44px; text-align: center; font-size: 18px; font-weight: bold; border: 1px solid #ccc; border-radius: 8px; }
+        .btn-submit { width: 100%; padding: 16px; background: var(--success); color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin-top: 25px; }
 
-        /* --- MODAL --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; z-index: 100; padding: 15px; }
         .modal-content { background: #fff; padding: 25px; border-radius: 12px; width: 100%; max-width: 400px; }
-        .modal-content h3 { margin-top: 0; color: var(--header-bg); border-bottom: 2px solid #eee; padding-bottom: 15px; }
-        .modal-content p { margin: 8px 0; font-size: 14px; display: flex; justify-content: space-between; border-bottom: 1px dashed #eee; padding-bottom: 5px;}
+        .modal-content p { display: flex; justify-content: space-between; border-bottom: 1px dashed #eee; padding-bottom: 5px; margin: 8px 0; font-size: 14px; }
         .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
-        .btn-cancel { flex: 1; padding: 12px; background: #95a5a6; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; }
-        .btn-confirm { flex: 1; padding: 12px; background: var(--success); color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; }
+        .modal-actions button { flex: 1; padding: 12px; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; color: white; cursor: pointer; }
 
-        /* --- FOOTER --- */
-        footer { background-color: var(--header-bg); color: white; display: flex; flex-wrap: wrap; gap: 10px; padding: 12px 15px; margin-top: auto; font-size: 12px; }
-        .footer-item { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 120px; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; }
-        .f-icon { font-size: 18px; }
+        footer { background-color: var(--header-bg); color: white; display: flex; flex-wrap: wrap; gap: 10px; padding: 12px 15px; margin-top: auto; }
+        .footer-item { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 110px; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; }
         .f-text span { display: block; font-size: 10px; color: #a0aec0; text-transform: uppercase; }
-        .f-text strong { font-size: 13px; font-weight: 600; white-space: nowrap;}
+        .f-text strong { font-size: 13px; font-weight: 600; }
+/* ========================================================================= */
+/* 🔺 MODÜL 1 BİTİŞ 🔺                                                       */
+/* ========================================================================= */
+
+
+/* ========================================================================= */
+/* 🔻 Modül 2: Giriş Çıkış Portları (HTML - Arayüz Modülü)!🔻               */
+/* ========================================================================= */
+
+
     </style>
 </head>
 <body>
 
-    <header>
+<header>
         <div class="header-left">
             <div class="warning-icon">⚠</div>
             <div class="header-title">
@@ -123,12 +109,10 @@
     </header>
 
     <div class="main-content">
-        <!-- [GÖRÜNÜM 1]: KURULUM -->
         <div id="setup-view">
             <div class="setup-card">
                 <h2 id="lbl_setup_title">Willkommen / Hoş Geldiniz</h2>
                 <p id="lbl_setup_desc">Lütfen vardiya bilgilerinizi teyit edin.</p>
-                
                 <div class="setup-row">
                     <div class="setup-group">
                         <label id="lbl_setup_date">Datum / Tarih</label>
@@ -143,7 +127,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="setup-row">
                     <div class="setup-group">
                         <label id="lbl_setup_pers">Pers.Nr / Personel No *</label>
@@ -155,33 +138,28 @@
                         <datalist id="machineList"></datalist>
                     </div>
                 </div>
-
                 <div class="setup-group" style="margin-bottom: 0;">
                     <label id="lbl_setup_bau">Bauteilnr / Ürün Kodu</label>
                     <input type="text" id="inp_bauteilnr" placeholder="Örn: A12345678" autocomplete="off">
                 </div>
-                
                 <button class="btn-start" onclick="startApp()" id="btn_start">Start / Başla</button>
             </div>
         </div>
 
-        <!-- [GÖRÜNÜM 2]: DASHBOARD -->
         <div id="dashboard-view">
             <div class="instruction">
                 <h2 id="lbl_inst_title">Bitte Bauteil Auswählen / Parça Tipi Seçin</h2>
-                <p id="lbl_inst_sub">Lütfen bir seçenek seçiniz</p>
             </div>
             <div class="grid-cards">
-                <div class="card c1" onclick="openForm('Ölwanne')"><div class="badge">1</div><div class="card-img-wrapper"><span style="font-size: 50px;">🛢️</span></div><h3 class="card-title">Ölwanne</h3><div class="card-subtitle" id="sub_1">Yağ Karteri</div><div class="arrow">›</div></div>
-                <div class="card c2" onclick="openForm('Halter Luftfilter')"><div class="badge">2</div><div class="card-img-wrapper"><span style="font-size: 50px;">💨</span></div><h3 class="card-title">Halter Luftfilter</h3><div class="card-subtitle" id="sub_2">Hava Filtresi Tutucu</div><div class="arrow">›</div></div>
-                <div class="card c3" onclick="openForm('Windlaut')"><div class="badge">3</div><div class="card-img-wrapper"><span style="font-size: 50px;">🔊</span></div><h3 class="card-title">Windlaut</h3><div class="card-subtitle" id="sub_3">Ses Çıkış Elemanı</div><div class="arrow">›</div></div>
-                <div class="card c4" onclick="openForm('Motorabdeckung Q-Tor')"><div class="badge">4</div><div class="card-img-wrapper"><span style="font-size: 50px;">⚙️</span></div><h3 class="card-title">Motorabdeckung Q-Tor</h3><div class="card-subtitle" id="sub_4">Motor Kapağı Q-Tor</div><div class="arrow">›</div></div>
-                <div class="card c5" onclick="openForm('Motorabdeckung')"><div class="badge">5</div><div class="card-img-wrapper"><span style="font-size: 50px;">🛡️</span></div><h3 class="card-title">Motorabdeckung</h3><div class="card-subtitle" id="sub_5">Motor Kapağı</div><div class="arrow">›</div></div>
-                <div class="card c6" onclick="openForm('Standard')"><div class="badge">6</div><div class="card-img-wrapper"><span style="font-size: 50px;">📋</span></div><h3 class="card-title">Standard</h3><div class="card-subtitle" id="sub_6">Standart Hatalar</div><div class="arrow">›</div></div>
+                <div class="card c1" onclick="openForm('Ölwanne')"><div class="badge">1</div><div class="card-img-wrapper">🛢️</div><h3 class="card-title">Ölwanne</h3><div class="card-subtitle" id="sub_1">Yağ Karteri</div></div>
+                <div class="card c2" onclick="openForm('Halter Luftfilter')"><div class="badge">2</div><div class="card-img-wrapper">💨</div><h3 class="card-title">Halter Luftfilter</h3><div class="card-subtitle" id="sub_2">Hava Filtresi Tutucu</div></div>
+                <div class="card c3" onclick="openForm('Windlaut')"><div class="badge">3</div><div class="card-img-wrapper">🔊</div><h3 class="card-title">Windlaut</h3><div class="card-subtitle" id="sub_3">Ses Çıkış Elemanı</div></div>
+                <div class="card c4" onclick="openForm('Motorabdeckung Q-Tor')"><div class="badge">4</div><div class="card-img-wrapper">⚙️</div><h3 class="card-title">Motorabdeckung Q-Tor</h3><div class="card-subtitle" id="sub_4">Motor Kapağı Q-Tor</div></div>
+                <div class="card c5" onclick="openForm('Motorabdeckung')"><div class="badge">5</div><div class="card-img-wrapper">🛡️</div><h3 class="card-title">Motorabdeckung</h3><div class="card-subtitle" id="sub_5">Motor Kapağı</div></div>
+                <div class="card c6" onclick="openForm('Standard')"><div class="badge">6</div><div class="card-img-wrapper">📋</div><h3 class="card-title">Standard</h3><div class="card-subtitle" id="sub_6">Standart Hatalar</div></div>
             </div>
         </div>
 
-        <!-- [GÖRÜNÜM 3]: FORM -->
         <div id="form-view">
             <button class="back-btn" onclick="goBack()">⬅ <span id="lbl_back">Zurück / Geri Dön</span></button>
             <h2 class="form-header-title" id="form-title">Seçilen Ürün</h2>
@@ -190,16 +168,14 @@
         </div>
     </div>
 
-    <!-- Ortak Alt Bilgi -->
     <footer>
-        <div class="footer-item"><div class="f-icon">📅</div><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
-        <div class="footer-item"><div class="f-icon">⏱️</div><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
-        <div class="footer-item"><div class="f-icon">👤</div><div class="f-text"><span id="lbl_foot_pers">Pers.nr</span><strong id="val_pers">-</strong></div></div>
-        <div class="footer-item"><div class="f-icon">⚙️</div><div class="f-text"><span id="lbl_foot_mac">Maschine</span><strong id="val_mac">-</strong></div></div>
-        <div class="footer-item"><div class="f-icon">📦</div><div class="f-text"><span id="lbl_foot_bau">Bauteil</span><strong id="val_bau">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_pers">Pers.nr</span><strong id="val_pers">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_mac">Maschine</span><strong id="val_mac">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_bau">Bauteil</span><strong id="val_bau">-</strong></div></div>
     </footer>
 
-    <!-- Gönderme Öncesi Onay Modalı -->
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-content">
             <h3 id="lbl_mod_title">Kontrolle / Son Kontrol</h3>
@@ -210,26 +186,27 @@
             <p><strong id="lbl_mod_bau">Bauteilnr:</strong> <span id="modBauteilNr"></span></p>
             <p><strong id="lbl_mod_cat">Kategorie:</strong> <span id="modKategori"></span></p>
             <p><strong id="lbl_mod_tot">Gesamt (Toplam):</strong> <span id="modTotalError" style="font-size: 18px; color: red; font-weight:bold;">0</span></p>
-            
             <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeModal()" id="btn_mod_cancel">Zurück / İptal</button>
-                <button class="btn-confirm" id="btnFinalSubmit" onclick="submitData()">Bestätigen / Onayla</button>
+                <button onclick="closeModal()" id="btn_mod_cancel" style="background:#95a5a6;">Zurück / İptal</button>
+                <button id="btnFinalSubmit" onclick="submitData()" style="background:var(--success);">Bestätigen / Onayla</button>
             </div>
         </div>
     </div>
+<script>
 
-    <!-- JAVASCRIPT -->
-    <script>
+/* ========================================================================= */
+/* 🔺 MODÜL 2 BİTİŞ 🔺                                                       */
+/* ========================================================================= */
+
+
+
+// ========================================================================= //
+// 🔻 MODÜL 3 BAŞLANGIÇ: HARD DİSK VE RAM (JS VERİTABANI MODÜLÜ) 🔻          //
+// ========================================================================= //
+        // Fabrikadaki Güncel Makine Listesi
         const baseMachines = ["400-2", "400-3", "500-9", "600-4", "600-7", "650-2", "650-8", "800-1", "800-4", "850-2", "850-3", "850-4", "900-1", "1000-3", "1000-4", "1100-1", "1450-1", "1600-3", "1700-2", "1700-3"];
         
-        const i18n = {
-            "tr": { "header_sub": "Hata Kodu Seçimi", "inst_title": "Parça Tipi Seçin", "inst_sub": "Lütfen bir seçenek seçiniz", "setup_title": "Hoş Geldiniz", "setup_desc": "Lütfen vardiya bilgilerinizi teyit edin.", "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", "start": "Başla", "c1": "Yağ Karteri", "c2": "Hava Filtresi Tutucu", "c3": "Ses Çıkış Elemanı", "c4": "Motor Kapağı Q-Tor", "c5": "Motor Kapağı", "c6": "Standart Hatalar", "back": "Geri Dön", "submit": "Kaydet / Gönder", "mod_title": "Son Kontrol", "mod_tot": "Toplam Hata:", "mod_cancel": "İptal", "mod_confirm": "Onayla", "mod_cat": "Kategori:" },
-            "en": { "header_sub": "Error Code Selection", "inst_title": "Select Part Type", "inst_sub": "Please select an option", "setup_title": "Welcome", "setup_desc": "Please confirm your shift details.", "s_date": "Date", "s_shift": "Shift", "s_pers": "Personnel No *", "s_mac": "Machine Code", "s_bau": "Product Code", "start": "Start", "c1": "Oil Pan", "c2": "Air Filter Holder", "c3": "Sound Emitter", "c4": "Engine Cover Q-Tor", "c5": "Engine Cover", "c6": "Standard Errors", "back": "Go Back", "submit": "Save / Submit", "mod_title": "Final Check", "mod_tot": "Total Errors:", "mod_cancel": "Cancel", "mod_confirm": "Confirm", "mod_cat": "Category:" },
-            "de": { "header_sub": "Fehlercode-Auswahl", "inst_title": "Bauteiltyp Auswählen", "inst_sub": "Bitte wählen Sie eine Option", "setup_title": "Willkommen", "setup_desc": "Bitte bestätigen Sie Ihre Schichtdaten.", "s_date": "Datum", "s_shift": "Schicht", "s_pers": "Pers.Nr *", "s_mac": "Maschine", "s_bau": "Bauteilnr", "start": "Starten", "c1": "Ölwanne", "c2": "Halter Luftfilter", "c3": "Windlaut", "c4": "Motorabdeckung Q-Tor", "c5": "Motorabdeckung", "c6": "Standardfehler", "back": "Zurück", "submit": "Speichern", "mod_title": "Kontrolle", "mod_tot": "Gesamtfehler:", "mod_cancel": "Abbrechen", "mod_confirm": "Bestätigen", "mod_cat": "Kategorie:" },
-            "ro": { "header_sub": "Selectare cod eroare", "inst_title": "Selectați tipul", "inst_sub": "Vă rugăm să selectați", "setup_title": "Bun venit", "setup_desc": "Confirmați datele de schimb.", "s_date": "Data", "s_shift": "Schimb", "s_pers": "Nr. Personal *", "s_mac": "Mașină", "s_bau": "Cod Produs", "start": "Start", "c1": "Baie de ulei", "c2": "Suport filtru aer", "c3": "Emițător sunet", "c4": "Capac motor Q-Tor", "c5": "Capac motor", "c6": "Erori standard", "back": "Înapoi", "submit": "Salvare", "mod_title": "Verificare Finală", "mod_tot": "Total Erori:", "mod_cancel": "Anulare", "mod_confirm": "Confirmare", "mod_cat": "Categorie:" },
-            "ru": { "header_sub": "Выбор кода ошибки", "inst_title": "Выберите тип", "inst_sub": "Пожалуйста, выберите опцию", "setup_title": "Добро пожаловать", "setup_desc": "Подтвердите данные смены.", "s_date": "Дата", "s_shift": "Смена", "s_pers": "Перс. номер *", "s_mac": "Машина", "s_bau": "Код продукта", "start": "Начать", "c1": "Масляный поддон", "c2": "Держатель фильтра", "c3": "Звуковой излучатель", "c4": "Крышка двигателя Q-Tor", "c5": "Крышка двигателя", "c6": "Стандартные ошибки", "back": "Назад", "submit": "Сохранить", "mod_title": "Финальная проверка", "mod_tot": "Всего ошибок:", "mod_cancel": "Отмена", "mod_confirm": "Подтвердить", "mod_cat": "Категория:" }
-        };
-
+        // 5 Dilde Tüm Parçaların Hata Tanımlamaları Veritabanı
         const db = {
             "Ölwanne": [ 
                 { de: "Ölwanne nicht dicht", tr: "Yağ karteri sızdırıyor", en: "Oil pan leaking", ro: "Baie de ulei neetanșă", ru: "Масляный поддон протекает" }, 
@@ -313,18 +290,32 @@
             ]
         };
 
-        let activePart = "";
+        // 5 Dilde Uygulama Sabit Metinleri Çeviri Havuzu
+        const i18n = {
+            "tr": { "header_sub": "Hata Kodu Seçimi", "inst_title": "Parça Tipi Seçin", "setup_title": "Hoş Geldiniz", "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", "start": "Başla", "c1": "Yağ Karteri", "c2": "Hava Filtresi Tutucu", "c3": "Ses Çıkış Elemanı", "c4": "Motor Kapağı Q-Tor", "c5": "Motor Kapağı", "c6": "Standart Hatalar", "back": "Geri Dön", "submit": "Kaydet / Gönder", "mod_title": "Son Kontrol", "mod_tot": "Toplam Hata:" },
+            "de": { "header_sub": "Fehlercode-Auswahl", "inst_title": "Bauteiltyp Auswählen", "setup_title": "Willkommen", "s_date": "Datum", "s_shift": "Schicht", "s_pers": "Pers.Nr *", "s_mac": "Maschine", "s_bau": "Bauteilnr", "start": "Starten", "c1": "Ölwanne", "c2": "Halter Luftfilter", "c3": "Windlaut", "c4": "Motorabdeckung Q-Tor", "c5": "Motorabdeckung", "c6": "Standardfehler", "back": "Zurück", "submit": "Speichern", "mod_title": "Kontrolle", "mod_tot": "Gesamtfehler:" },
+            "en": { "header_sub": "Error Code Selection", "inst_title": "Select Part Type", "setup_title": "Welcome", "s_date": "Date", "s_shift": "Shift", "s_pers": "Personnel No *", "s_mac": "Machine Code", "s_bau": "Product Code", "start": "Start", "c1": "Oil Pan", "c2": "Air Filter Holder", "c3": "Sound Emitter", "c4": "Engine Cover Q-Tor", "c5": "Engine Cover", "c6": "Standard Errors", "back": "Go Back", "submit": "Save / Submit", "mod_title": "Final Check", "mod_tot": "Total Errors:" },
+            "ro": { "header_sub": "Selectare cod eroare", "inst_title": "Selectați tipul", "setup_title": "Bun venit", "s_date": "Data", "s_shift": "Schimb", "s_pers": "Nr. Personal *", "s_mac": "Mașină", "s_bau": "Cod Produs", "start": "Start", "c1": "Baie de ulei", "c2": "Suport filtru aer", "c3": "Emițător sunet", "c4": "Capac motor Q-Tor", "c5": "Capac motor", "c6": "Erori standard", "back": "Înapoi", "submit": "Salvare", "mod_title": "Verificare Finală", "mod_tot": "Total Erori:" },
+            "ru": { "header_sub": "Выбор кода ошибки", "inst_title": "Выберите тип", "setup_title": "Добро пожаловать", "s_date": "Дата", "s_shift": "Смена", "s_pers": "Перс. номер *", "s_mac": "Машина", "s_bau": "Код продукта", "start": "Начать", "c1": "Масляный поддон", "c2": "Держатель фильтра", "c3": "Звуковой излучатель", "c4": "Крышка двигателя Q-Tor", "c5": "Крышка двигателя", "c6": "Стандартные ошибки", "back": "Назад", "submit": "Сохранить", "mod_title": "Финальная проверка", "mod_tot": "Всего ошибок:" }
+        };
+// ========================================================================= //
+// 🔺 MODÜL 3 BİTİŞ 🔺                                                       //
+// ========================================================================= //
 
-        // Vardiya Hesaplaması - Buçuklu saatler eklendi (Örn: 06:30 -> 6.5)
+
+
+// ========================================================================= //
+// 🔻 MODÜL 4 BAŞLANGIÇ: MERKEZİ İŞLEMCİ (JS MANTIK MODÜLÜ) 🔻               //
+// ========================================================================= //
         function getAutoShift() {
             let now = new Date();
             let timeInHours = now.getHours() + (now.getMinutes() / 60);
-
             if(timeInHours >= 6.5 && timeInHours < 14.5) return "Frühschicht";
             if(timeInHours >= 14.5 && timeInHours < 22.5) return "Spätschicht";
             return "Nachtschicht";
         }
 
+        let activePart = "";
         window.onload = function() {
             let savedLang = localStorage.getItem('appLang') || 'tr'; 
             document.getElementById('langSelect').value = savedLang;
@@ -334,7 +325,6 @@
             let today = new Date().toISOString().split('T')[0];
             document.getElementById('inp_date').value = localStorage.getItem('savedDate') || today;
             document.getElementById('inp_shift').value = localStorage.getItem('savedShift') || getAutoShift();
-
             document.getElementById('inp_persnr').value = localStorage.getItem('savedPersnr') || "";
             document.getElementById('inp_maschine').value = localStorage.getItem('savedMaschine') || "";
             document.getElementById('inp_bauteilnr').value = localStorage.getItem('savedBauteilnr') || "";
@@ -357,20 +347,32 @@
 
             if(!pnr) { alert("Lütfen Personel Numaranızı giriniz!"); return; }
 
+            // --- YENİ: MAKİNE FORMATI VE LİSTE KONTROLÜ ---
+            if(mac !== "") {
+                // 1. Kural: Format Kontrolü (Örn: 400-2)
+                let formatKurali = /^\d{3,4}-\d{1,2}$/;
+                if(!formatKurali.test(mac)) {
+                    alert("Makine numarası formatı hatalı! \nLütfen araya tire koyarak giriniz (Örn: 400-2 veya 1100-1)");
+                    return; 
+                }
+
+                // 2. Kural: Kayıtlı Liste Kontrolü (Hibrit Onay)
+                if(!baseMachines.includes(mac)) {
+                    // Listede yoksa operatöre sor
+                    let eminMisiniz = confirm("⚠ DİKKAT: '" + mac + "' numaralı makine kayıtlı listede bulunamadı!\n\nHatalı yazmış olabilir misiniz? Yeni bir makine ise 'Tamam'a, düzeltmek için 'İptal'e basınız.\n\n(Achtung: Maschine nicht gelistet. Möchten Sie trotzdem fortfahren?)");
+                    
+                    if(!eminMisiniz) {
+                        return; // Operatör İptal'e basarsa işlemi durdur ve formda kal.
+                    }
+                }
+            }
+            // ----------------------------------------------
+
             localStorage.setItem('savedDate', dat);
             localStorage.setItem('savedShift', shf);
             localStorage.setItem('savedPersnr', pnr);
             localStorage.setItem('savedMaschine', mac);
             localStorage.setItem('savedBauteilnr', bau);
-
-            if(mac) {
-                let savedHistory = JSON.parse(localStorage.getItem('machineHistory') || "[]");
-                if(!savedHistory.includes(mac) && !baseMachines.includes(mac)) {
-                    savedHistory.push(mac);
-                    localStorage.setItem('machineHistory', JSON.stringify(savedHistory));
-                    loadMachineList();
-                }
-            }
 
             document.getElementById('val_date').innerText = dat;
             document.getElementById('val_shift').innerText = shf.replace("schicht", ""); 
@@ -382,68 +384,29 @@
             document.getElementById('dashboard-view').style.display = 'block';
         }
 
-        function changeLanguage() {
-            let selected = document.getElementById('langSelect').value;
-            localStorage.setItem('appLang', selected);
-            applyTranslations(selected);
-            if(activePart !== "") loadErrors(activePart); 
-        }
-
-        function applyTranslations(lang) {
-            let t = i18n[lang];
-            
-            document.getElementById('lbl_header_sub').innerText = t.header_sub;
-            document.getElementById('lbl_inst_title').innerText = t.inst_title;
-            document.getElementById('lbl_inst_sub').innerText = t.inst_sub;
-            
-            document.getElementById('lbl_setup_title').innerText = t.setup_title;
-            document.getElementById('lbl_setup_desc').innerText = t.setup_desc;
-            document.getElementById('lbl_setup_date').innerText = t.s_date;
-            document.getElementById('lbl_setup_shift').innerText = t.s_shift;
-            document.getElementById('lbl_setup_pers').innerText = t.s_pers;
-            document.getElementById('lbl_setup_mac').innerText = t.s_mac;
-            document.getElementById('lbl_setup_bau').innerText = t.s_bau;
-            document.getElementById('btn_start').innerText = t.start;
-
-            document.getElementById('sub_1').innerText = t.c1; document.getElementById('sub_2').innerText = t.c2;
-            document.getElementById('sub_3').innerText = t.c3; document.getElementById('sub_4').innerText = t.c4;
-            document.getElementById('sub_5').innerText = t.c5; document.getElementById('sub_6').innerText = t.c6;
-
-            document.getElementById('lbl_foot_date').innerText = t.s_date;
-            document.getElementById('lbl_foot_shift').innerText = t.s_shift;
-            document.getElementById('lbl_foot_pers').innerText = t.s_pers.replace(' *','');
-            document.getElementById('lbl_foot_mac').innerText = t.s_mac;
-            document.getElementById('lbl_foot_bau').innerText = t.s_bau;
-            
-            document.getElementById('lbl_back').innerText = t.back;
-            document.getElementById('btn_submit_main').innerText = t.submit;
-            document.getElementById('lbl_mod_title').innerText = t.mod_title;
-            document.getElementById('lbl_mod_date').innerText = t.s_date + ":";
-            document.getElementById('lbl_mod_shift').innerText = t.s_shift + ":";
-            document.getElementById('lbl_mod_pers').innerText = t.s_pers.replace(' *','') + ":";
-            document.getElementById('lbl_mod_mac').innerText = t.s_mac + ":";
-            document.getElementById('lbl_mod_bau').innerText = t.s_bau + ":";
-            document.getElementById('lbl_mod_cat').innerText = t.mod_cat;
-            document.getElementById('lbl_mod_tot').innerText = t.mod_tot;
-            document.getElementById('btn_mod_cancel').innerText = t.mod_cancel;
-            document.getElementById('btnFinalSubmit').innerText = t.mod_confirm;
-        }
-
-        function loadMachineList() {
-            let datalist = document.getElementById('machineList');
-            datalist.innerHTML = "";
-            let allMachines = [...baseMachines];
-            let savedHistory = JSON.parse(localStorage.getItem('machineHistory') || "[]");
-            savedHistory.forEach(mac => { if(!allMachines.includes(mac)) allMachines.push(mac); });
-            allMachines.forEach(mac => { let option = document.createElement('option'); option.value = mac; datalist.appendChild(option); });
-        }
-
         function openForm(partName) {
             activePart = partName;
             document.getElementById('dashboard-view').style.display = 'none';
             document.getElementById('form-view').style.display = 'block';
             document.getElementById('form-title').innerText = partName;
-            loadErrors(partName); 
+            
+            let listDiv = document.getElementById('errorList');
+            let lang = document.getElementById('langSelect').value;
+            let selectedList = db[partName] ? db[partName] : db["Standard"];
+            listDiv.innerHTML = ""; 
+            
+            selectedList.forEach((err, index) => {
+                let subtitle = lang === 'de' ? "" : (err[lang] || "");
+                listDiv.innerHTML += `
+                    <div class="error-item">
+                        <div class="error-name"><strong>${err.de}</strong><span>${subtitle}</span></div>
+                        <div class="counter">
+                            <button class="btn-count" onclick="updateCount('err_${index}', -1)">-</button>
+                            <input type="number" id="err_${index}" class="count-input" value="0" min="0" inputmode="numeric">
+                            <button class="btn-count" onclick="updateCount('err_${index}', 1)">+</button>
+                        </div>
+                    </div>`;
+            });
             window.scrollTo(0, 0); 
         }
 
@@ -453,36 +416,46 @@
             activePart = "";
         }
 
-        function loadErrors(partName) {
-            let listDiv = document.getElementById('errorList');
-            let lang = document.getElementById('langSelect').value;
-            let selectedList = db[partName] ? db[partName] : db["Standard"];
-            listDiv.innerHTML = ""; 
-            selectedList.forEach((err, index) => {
-                let subtitle = lang === 'de' ? "" : (err[lang] || "");
-                let inputId = `err_${index}`;
-                listDiv.innerHTML += `
-                    <div class="error-item">
-                        <div class="error-name"><strong>${err.de}</strong><span>${subtitle}</span></div>
-                        <div class="counter">
-                            <button class="btn-count" onclick="updateCount('${inputId}', -1)">-</button>
-                            <input type="number" id="${inputId}" class="count-input" value="0" min="0" inputmode="numeric">
-                            <button class="btn-count" onclick="updateCount('${inputId}', 1)">+</button>
-                        </div>
-                    </div>`;
-            });
-        }
-
         function updateCount(id, val) {
             let input = document.getElementById(id);
             let current = parseInt(input.value) || 0;
             if(current + val >= 0) input.value = current + val; 
         }
 
+        function loadMachineList() {
+            let datalist = document.getElementById('machineList');
+            datalist.innerHTML = "";
+            baseMachines.forEach(mac => { let option = document.createElement('option'); option.value = mac; datalist.appendChild(option); });
+        }
+
+        function changeLanguage() {
+            let selected = document.getElementById('langSelect').value;
+            localStorage.setItem('appLang', selected);
+            applyTranslations(selected);
+            if(activePart !== "") openForm(activePart); 
+        }
+
+        function applyTranslations(lang) {
+            let t = i18n[lang] || i18n['de'];
+            document.getElementById('lbl_header_sub').innerText = t.header_sub;
+            document.getElementById('lbl_inst_title').innerText = t.inst_title;
+            document.getElementById('lbl_setup_title').innerText = t.setup_title;
+            document.getElementById('lbl_setup_date').innerText = t.s_date;
+            document.getElementById('lbl_setup_shift').innerText = t.s_shift;
+            document.getElementById('lbl_setup_pers').innerText = t.s_pers;
+            document.getElementById('lbl_setup_mac').innerText = t.s_mac;
+            document.getElementById('lbl_setup_bau').innerText = t.s_bau;
+            document.getElementById('btn_start').innerText = t.start;
+            document.getElementById('lbl_back').innerText = t.back;
+            document.getElementById('btn_submit_main').innerText = t.submit;
+            document.getElementById('sub_1').innerText = t.c1; document.getElementById('sub_2').innerText = t.c2;
+            document.getElementById('sub_3').innerText = t.c3; document.getElementById('sub_4').innerText = t.c4;
+            document.getElementById('sub_5').innerText = t.c5; document.getElementById('sub_6').innerText = t.c6;
+        }
+
         function showModal() {
             let total = 0;
             document.querySelectorAll('.count-input').forEach(input => { total += parseInt(input.value) || 0; });
-
             document.getElementById('modDatum').innerText = localStorage.getItem('savedDate');
             document.getElementById('modSchicht').innerText = localStorage.getItem('savedShift');
             document.getElementById('modPers').innerText = localStorage.getItem('savedPersnr');
@@ -490,28 +463,19 @@
             document.getElementById('modBauteilNr').innerText = localStorage.getItem('savedBauteilnr') || "-";
             document.getElementById('modKategori').innerText = activePart;
             document.getElementById('modTotalError').innerText = total;
-
             document.getElementById('confirmModal').style.display = 'flex'; 
         }
 
         function closeModal() { document.getElementById('confirmModal').style.display = 'none'; }
 
         function submitData() {
-            let btn = document.getElementById('btnFinalSubmit');
-            btn.innerText = "⏳ Bekleyin...";
-            btn.style.background = "#95a5a6";
-            btn.disabled = true;
-
-            setTimeout(() => {
-                alert("✅ Kayıt Başarılı! (Tüm veriler sisteme işlendi)");
-                closeModal();
-                document.querySelectorAll('.count-input').forEach(input => input.value = 0);
-                btn.innerText = i18n[document.getElementById('langSelect').value].mod_confirm;
-                btn.style.background = "var(--success)";
-                btn.disabled = false;
-                goBack(); 
-            }, 1200);
+            alert("Kayıt veritabanı adımında aktif edilecek.");
+            closeModal();
+            goBack(); 
         }
+// ========================================================================= //
+// 🔺 MODÜL 4 BİTİŞ 🔺                                                       //
+// ========================================================================= //
     </script>
 </body>
 </html>
