@@ -307,13 +307,24 @@
 // ========================================================================= //
 // 🔻 MODÜL 4 BAŞLANGIÇ: MERKEZİ İŞLEMCİ (JS MANTIK MODÜLÜ) 🔻               //
 // ========================================================================= //
-        function getAutoShift() {
+     
+// ========================================================================= //
+    function getAutoShift() {
             let now = new Date();
-            let timeInHours = now.getHours() + (now.getMinutes() / 60);
-            if(timeInHours >= 6.5 && timeInHours < 14.5) return "Frühschicht";
-            if(timeInHours >= 14.5 && timeInHours < 22.5) return "Spätschicht";
+            let hour = now.getHours();
+            let min = now.getMinutes();
+            let totalMinutes = (hour * 60) + min;
+
+            // Vardiya sınırları (Dakika cinsinden)
+            // Früh: 06:30 (390 dk) - 14:30 (870 dk)
+            // Spät: 14:30 (870 dk) - 22:30 (1350 dk)
+            // Nacht: 22:30 (1350 dk) - 06:30 (390 dk)
+
+            if (totalMinutes >= 390 && totalMinutes < 870) return "Frühschicht";
+            if (totalMinutes >= 870 && totalMinutes < 1350) return "Spätschicht";
             return "Nachtschicht";
         }
+// ========================================================================= //
 
         let activePart = "";
         window.onload = function() {
