@@ -168,14 +168,20 @@
         </div>
     </div>
 
-    <footer>
-        <div class="footer-item"><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
-        <div class="footer-item"><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
-        <div class="footer-item"><div class="f-text"><span id="lbl_foot_pers">Pers.nr</span><strong id="val_pers">-</strong></div></div>
-        <div class="footer-item"><div class="f-text"><span id="lbl_foot_mac">Maschine</span><strong id="val_mac">-</strong></div></div>
-        <div class="footer-item"><div class="f-text"><span id="lbl_foot_bau">Bauteil</span><strong id="val_bau">-</strong></div></div>
-    </footer>
+    /* ============================= veriyon satırı başlangıç =========================================== */
+ <footer style="position: relative;">
+    <div class="footer-item"><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
+    <div class="footer-item"><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
+    <div class="footer-item"><div class="f-text"><span id="lbl_foot_pers">Pers.nr</span><strong id="val_pers">-</strong></div></div>
+    <div class="footer-item"><div class="f-text"><span id="lbl_foot_mac">Maschine</span><strong id="val_mac">-</strong></div></div>
+    <div class="footer-item"><div class="f-text"><span id="lbl_foot_bau">Bauteil</span><strong id="val_bau">-</strong></div></div>
 
+    <div id="version-tag" style="position: absolute; bottom: 5px; right: 10px; font-size: 10px; color: rgba(255,255,255,0.5);">
+        v1.0.4 - Yükleniyor...
+    </div>
+</footer>
+/* =========================== versiyon satiri bitis ============================================== */
+    
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-content">
             <h3 id="lbl_mod_title">Kontrolle / Son Kontrol</h3>
@@ -339,8 +345,17 @@
             document.getElementById('inp_persnr').value = localStorage.getItem('savedPersnr') || "";
             document.getElementById('inp_maschine').value = localStorage.getItem('savedMaschine') || "";
             document.getElementById('inp_bauteilnr').value = localStorage.getItem('savedBauteilnr') || "";
+
+            // window.onload fonksiyonunun en altına ekle 
+            let lastModified = new Date(document.lastModified);
+            let formattedDate = lastModified.toLocaleDateString('tr-TR') + " " + 
+                    lastModified.toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'});
+            document.getElementById('version-tag').innerText = "v1.0.4 - " + formattedDate;
+
             
             showSetup();
+
+            
         };
 
         function showSetup() {
@@ -484,6 +499,7 @@
             closeModal();
             goBack(); 
         }
+ 
 // ========================================================================= //
 // 🔺 MODÜL 4 BİTİŞ 🔺                                                       //
 // ========================================================================= //
