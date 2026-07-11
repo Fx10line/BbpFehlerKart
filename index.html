@@ -298,15 +298,51 @@
                 { de: "Montageteil fehlt", tr: "Montaj parçası eksik", en: "Mounting part missing", ro: "Piesă de montaj lipsă", ru: "Монтажная деталь отсутствует" }
             ]
         };
+    
+       // 5 Dilde Uygulama Sabit Metinleri Çeviri Havuzu (Güncel)
+    const i18n = {
+    "tr": { 
+        "header_sub": "Hata Kodu Seçimi", "setup_desc": "Lütfen vardiya bilgilerinizi teyit edin.", 
+        "setup_title": "Hoş Geldiniz", "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", 
+        "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", "start": "Başla", "c1": "Yağ Karteri", 
+        "c2": "Hava Filtresi Tutucu", "c3": "Ses Çıkış Elemanı", "c4": "Motor Kapağı Q-Tor", 
+        "c5": "Motor Kapağı", "c6": "Standart Hatalar", "back": "Geri Dön", "submit": "Kaydet / Gönder", 
+        "mod_title": "Son Kontrol", "mod_tot": "Toplam Hata:" 
+    },
+    "de": { 
+        "header_sub": "Fehlercode-Auswahl", "setup_desc": "Bitte bestätigen Sie Ihre Schichtdaten.", 
+        "setup_title": "Willkommen", "s_date": "Datum", "s_shift": "Schicht", "s_pers": "Pers.Nr *", 
+        "s_mac": "Maschine", "s_bau": "Bauteilnr", "start": "Starten", "c1": "Ölwanne", 
+        "c2": "Halter Luftfilter", "c3": "Windlaut", "c4": "Motorabdeckung Q-Tor", 
+        "c5": "Motorabdeckung", "c6": "Standardfehler", "back": "Zurück", "submit": "Speichern", 
+        "mod_title": "Kontrolle", "mod_tot": "Gesamtfehler:" 
+    },
+    "en": { 
+        "header_sub": "Error Code Selection", "setup_desc": "Please confirm your shift details.", 
+        "setup_title": "Welcome", "s_date": "Date", "s_shift": "Shift", "s_pers": "Personnel No *", 
+        "s_mac": "Machine Code", "s_bau": "Product Code", "start": "Start", "c1": "Oil Pan", 
+        "c2": "Air Filter Holder", "c3": "Sound Emitter", "c4": "Engine Cover Q-Tor", 
+        "c5": "Engine Cover", "c6": "Standard Errors", "back": "Go Back", "submit": "Save / Submit", 
+        "mod_title": "Final Check", "mod_tot": "Total Errors:" 
+    },
+    "ro": { 
+        "header_sub": "Selectare cod eroare", "setup_desc": "Vă rugăm să confirmați datele schimbului.", 
+        "setup_title": "Bun venit", "s_date": "Data", "s_shift": "Schimb", "s_pers": "Nr. Personal *", 
+        "s_mac": "Mașină", "s_bau": "Cod Produs", "start": "Start", "c1": "Baie de ulei", 
+        "c2": "Suport filtru aer", "c3": "Emițător sunet", "c4": "Capac motor Q-Tor", 
+        "c5": "Capac motor", "c6": "Erori standard", "back": "Înapoi", "submit": "Salvare", 
+        "mod_title": "Verificare Finală", "mod_tot": "Total Erori:" 
+    },
+    "ru": { 
+        "header_sub": "Выбор кода ошибки", "setup_desc": "Пожалуйста, подтвердите данные смены.", 
+        "setup_title": "Добро пожаловать", "s_date": "Дата", "s_shift": "Смена", "s_pers": "Перс. номер *", 
+        "s_mac": "Машина", "s_bau": "Код продукта", "start": "Начать", "c1": "Масляный поддон", 
+        "c2": "Держатель фильтра", "c3": "Звуковой излучатель", "c4": "Крышка двигателя Q-Tor", 
+        "c5": "Крышка двигателя", "c6": "Стандартные ошибки", "back": "Назад", "submit": "Сохранить", 
+        "mod_title": "Финальная проверка", "mod_tot": "Всего ошибок:" 
+    }
+   };
 
-        // 5 Dilde Uygulama Sabit Metinleri Çeviri Havuzu
-        const i18n = {
-            "tr": { "header_sub": "Hata Kodu Seçimi", "inst_title": "Parça Tipi Seçin", "setup_title": "Hoş Geldiniz", "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", "start": "Başla", "c1": "Yağ Karteri", "c2": "Hava Filtresi Tutucu", "c3": "Ses Çıkış Elemanı", "c4": "Motor Kapağı Q-Tor", "c5": "Motor Kapağı", "c6": "Standart Hatalar", "back": "Geri Dön", "submit": "Kaydet / Gönder", "mod_title": "Son Kontrol", "mod_tot": "Toplam Hata:" },
-            "de": { "header_sub": "Fehlercode-Auswahl", "inst_title": "Bauteiltyp Auswählen", "setup_title": "Willkommen", "s_date": "Datum", "s_shift": "Schicht", "s_pers": "Pers.Nr *", "s_mac": "Maschine", "s_bau": "Bauteilnr", "start": "Starten", "c1": "Ölwanne", "c2": "Halter Luftfilter", "c3": "Windlaut", "c4": "Motorabdeckung Q-Tor", "c5": "Motorabdeckung", "c6": "Standardfehler", "back": "Zurück", "submit": "Speichern", "mod_title": "Kontrolle", "mod_tot": "Gesamtfehler:" },
-            "en": { "header_sub": "Error Code Selection", "inst_title": "Select Part Type", "setup_title": "Welcome", "s_date": "Date", "s_shift": "Shift", "s_pers": "Personnel No *", "s_mac": "Machine Code", "s_bau": "Product Code", "start": "Start", "c1": "Oil Pan", "c2": "Air Filter Holder", "c3": "Sound Emitter", "c4": "Engine Cover Q-Tor", "c5": "Engine Cover", "c6": "Standard Errors", "back": "Go Back", "submit": "Save / Submit", "mod_title": "Final Check", "mod_tot": "Total Errors:" },
-            "ro": { "header_sub": "Selectare cod eroare", "inst_title": "Selectați tipul", "setup_title": "Bun venit", "s_date": "Data", "s_shift": "Schimb", "s_pers": "Nr. Personal *", "s_mac": "Mașină", "s_bau": "Cod Produs", "start": "Start", "c1": "Baie de ulei", "c2": "Suport filtru aer", "c3": "Emițător sunet", "c4": "Capac motor Q-Tor", "c5": "Capac motor", "c6": "Erori standard", "back": "Înapoi", "submit": "Salvare", "mod_title": "Verificare Finală", "mod_tot": "Total Erori:" },
-            "ru": { "header_sub": "Выбор кода ошибки", "inst_title": "Выберите тип", "setup_title": "Добро пожаловать", "s_date": "Дата", "s_shift": "Смена", "s_pers": "Перс. номер *", "s_mac": "Машина", "s_bau": "Код продукта", "start": "Начать", "c1": "Масляный поддон", "c2": "Держатель фильтра", "c3": "Звуковой излучатель", "c4": "Крышка двигателя Q-Tor", "c5": "Крышка двигателя", "c6": "Стандартные ошибки", "back": "Назад", "submit": "Сохранить", "mod_title": "Финальная проверка", "mod_tot": "Всего ошибок:" }
-        };
 // ========================================================================= //
 // 🔺 MODÜL 3 BİTİŞ 🔺                                                       //
 // ========================================================================= //
