@@ -168,7 +168,9 @@
         </div>
     </div>
 
- //* ============================= veriyon satırı başlangıç =========================================== *//
+
+
+    
  <footer style="position: relative;">
     <div class="footer-item"><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
     <div class="footer-item"><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
@@ -180,7 +182,8 @@
         v1.0.4 - Yükleniyor...
     </div>
 </footer>
-//* =========================== versiyon satiri bitis ============================================== *//
+
+    
     
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-content">
@@ -313,8 +316,8 @@
 // ========================================================================= //
 // 🔻 MODÜL 4 BAŞLANGIÇ: MERKEZİ İŞLEMCİ (JS MANTIK MODÜLÜ) 🔻               //
 // ========================================================================= //
-     
-// ========================================================================= //
+
+    
     function getAutoShift() {
             let now = new Date();
             let hour = now.getHours();
@@ -330,7 +333,8 @@
             if (totalMinutes >= 870 && totalMinutes < 1350) return "Spätschicht";
             return "Nachtschicht";
         }
-// ========================================================================= //
+
+    
 
         let activePart = "";
         window.onload = function() {
