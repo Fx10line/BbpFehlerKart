@@ -385,6 +385,9 @@
             document.getElementById('inp_persnr').value = localStorage.getItem('savedPersnr') || "";
             document.getElementById('inp_maschine').value = localStorage.getItem('savedMaschine') || "";
             document.getElementById('inp_bauteilnr').value = localStorage.getItem('savedBauteilnr') || "";
+            
+            document.getElementById('lbl_setup_desc').innerText = t.setup_desc;
+
 
             // window.onload fonksiyonunun en altına ekle 
             let lastModified = new Date(document.lastModified);
