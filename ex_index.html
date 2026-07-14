@@ -7,7 +7,7 @@
     
     <style>
 /* ========================================================================= */
-/* 🔻 MODÜL 1 BAŞLANGIÇ: KASA VE BOYA (CSS - TASARIM MODÜLÜ) 🔻               */
+/* 🔻 MODÜL 1: KASA VE BOYA (CSS - TASARIM MODÜLÜ) 🔻                        */
 /* ========================================================================= */
         :root {
             --header-bg: #0f2b46;       
@@ -63,7 +63,7 @@
         .counter { display: flex; align-items: center; gap: 8px; }
         .btn-count { background: #e0e6ed; border: none; width: 44px; height: 44px; border-radius: 8px; font-size: 24px; font-weight: bold; cursor: pointer; }
         .count-input { width: 60px; height: 44px; text-align: center; font-size: 18px; font-weight: bold; border: 1px solid #ccc; border-radius: 8px; }
-        .btn-submit { width: 100%; padding: 16px; background: var(--success); color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin-top: 25px; }
+        .btn-submit { width: 100%; padding: 16px; background: var(--success); color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; margin-top: 25px; cursor: pointer;}
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; z-index: 100; padding: 15px; }
         .modal-content { background: #fff; padding: 25px; border-radius: 12px; width: 100%; max-width: 400px; }
@@ -78,13 +78,6 @@
 /* ========================================================================= */
 /* 🔺 MODÜL 1 BİTİŞ 🔺                                                       */
 /* ========================================================================= */
-
-
-/* ========================================================================= */
-/* 🔻 Modül 2: Giriş Çıkış Portları (HTML - Arayüz Modülü)!🔻               */
-/* ========================================================================= */
-
-
     </style>
 </head>
 <body>
@@ -98,7 +91,7 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="btn-settings" onclick="showSetup()" title="Bilgileri Güncelle">⚙️</button>
+            <button class="btn-settings" onclick="showSetup()" title="Ayarlar">⚙️</button>
             <div class="lang-switcher">
                 <select id="langSelect" onchange="changeLanguage()">
                     <option value="de">DE</option><option value="tr">TR</option>
@@ -121,9 +114,9 @@
                     <div class="setup-group">
                         <label id="lbl_setup_shift">Schicht / Vardiya</label>
                         <select id="inp_shift">
-                            <option value="Frühschicht">Frühschicht </option>
-                            <option value="Spätschicht">Spätschicht </option>
-                            <option value="Nachtschicht">Nachtschicht </option>
+                            <option value="Frühschicht">Frühschicht</option>
+                            <option value="Spätschicht">Spätschicht</option>
+                            <option value="Nachtschicht">Nachtschicht</option>
                         </select>
                     </div>
                 </div>
@@ -168,22 +161,14 @@
         </div>
     </div>
 
-
-
-    
- <footer style="position: relative;">
-    <div class="footer-item"><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
-    <div class="footer-item"><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
-    <div class="footer-item"><div class="f-text"><span id="lbl_foot_pers">Pers.nr</span><strong id="val_pers">-</strong></div></div>
-    <div class="footer-item"><div class="f-text"><span id="lbl_foot_mac">Maschine</span><strong id="val_mac">-</strong></div></div>
-    <div class="footer-item"><div class="f-text"><span id="lbl_foot_bau">Bauteil</span><strong id="val_bau">-</strong></div></div>
-
-    <div id="version-tag" style="position: absolute; bottom: 5px; right: 10px; font-size: 10px; color: rgba(255,255,255,0.5);">
-        v1.0.4 - Yükleniyor...
-    </div>
-</footer>
-
-    
+    <footer style="position: relative;">
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_pers">Pers.nr</span><strong id="val_pers">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_mac">Maschine</span><strong id="val_mac">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_bau">Bauteil</span><strong id="val_bau">-</strong></div></div>
+        <div id="version-tag" style="position: absolute; bottom: 5px; right: 10px; font-size: 10px; color: rgba(255,255,255,0.5);">v1.0.5 - Yükleniyor...</div>
+    </footer>
     
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-content">
@@ -194,358 +179,497 @@
             <p><strong id="lbl_mod_mac">Maschine:</strong> <span id="modMaschine"></span></p>
             <p><strong id="lbl_mod_bau">Bauteilnr:</strong> <span id="modBauteilNr"></span></p>
             <p><strong id="lbl_mod_cat">Kategorie:</strong> <span id="modKategori"></span></p>
-            <p><strong id="lbl_mod_tot">Gesamt (Toplam):</strong> <span id="modTotalError" style="font-size: 18px; color: red; font-weight:bold;">0</span></p>
+            <p><strong id="lbl_mod_tot">Gesamt:</strong> <span id="modTotalError" style="font-size: 18px; color: red; font-weight:bold;">0</span></p>
             <div class="modal-actions">
                 <button onclick="closeModal()" id="btn_mod_cancel" style="background:#95a5a6;">Zurück / İptal</button>
-                <button id="btnFinalSubmit" onclick="submitData()" style="background:var(--success);">Bestätigen / Onayla</button>
+                <button onclick="submitData()" id="btn_mod_confirm" style="background:var(--success);">Bestätigen / Onayla</button>
             </div>
         </div>
     </div>
 <script>
 
-/* ========================================================================= */
-/* 🔺 MODÜL 2 BİTİŞ 🔺                                                       */
-/* ========================================================================= */
-
-
-
 // ========================================================================= //
-// 🔻 MODÜL 3 BAŞLANGIÇ: HARD DİSK VE RAM (JS VERİTABANI MODÜLÜ) 🔻          //
+// 🔻 MODÜL 3: HARD DİSK VE RAM (JS VERİTABANI MODÜLÜ) 🔻                    //
 // ========================================================================= //
-        // Fabrikadaki Güncel Makine Listesi
-        const baseMachines = ["400-2", "400-3", "500-9", "600-4", "600-7", "650-2", "650-8", "800-1", "800-4", "850-2", "850-3", "850-4", "900-1", "1000-3", "1000-4", "1100-1", "1450-1", "1600-3", "1700-2", "1700-3"];
-        
-        // 5 Dilde Tüm Parçaların Hata Tanımlamaları Veritabanı
-        const db = {
-            "Ölwanne": [ 
-                { de: "Ölwanne nicht dicht", tr: "Yağ karteri sızdırıyor", en: "Oil pan leaking", ro: "Baie de ulei neetanșă", ru: "Масляный поддон протекает" }, 
-                { de: "Maschinen-/ Anlagenstörung", tr: "Makine/Tesis arızası", en: "Machine/Plant fault", ro: "Defecțiune mașină/instalație", ru: "Неисправность машины/установки" }, 
-                { de: "Teile nicht voll", tr: "Parçalar tam değil", en: "Parts not full", ro: "Piese incomplete", ru: "Детали не полные" }, 
-                { de: "Gratbildung", tr: "Çapak oluşumu", en: "Burr formation", ro: "Formare bavuri", ru: "Образование заусенцев" }, 
-                { de: "Buchse nicht richtig montiert/fehlt", tr: "Burç yanlış montajlı/eksik", en: "Bushing incorrectly mounted/missing", ro: "Bucșă montată greșit/lipsă", ru: "Втулка установлена неправильно/отсутствует" }, 
-                { de: "Schraube fehlt", tr: "Vida eksik", en: "Screw missing", ro: "Șurub lipsă", ru: "Отсутствует винт" }, 
-                { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" } 
-            ],
-            "Halter Luftfilter": [ 
-                { de: "Formfehler: nicht vollständig", tr: "Form hatası: Tam değil", en: "Form error: incomplete", ro: "Eroare formă: incomplet", ru: "Ошибка формы: неполная" }, 
-                { de: "Formfehler: Grat vorhanden", tr: "Form hatası: Çapak var", en: "Form error: Burr present", ro: "Eroare formă: Bavură prezentă", ru: "Ошибка формы: Присутствует заусенец" }, 
-                { de: "Clip: fehlt", tr: "Klips: Eksik", en: "Clip: missing", ro: "Clip: lipsă", ru: "Клипса: отсутствует" }, 
-                { de: "Clip: falsch herum montiert", tr: "Klips: Ters monte edilmiş", en: "Clip: mounted upside down", ro: "Clip: montat invers", ru: "Клипса: установлена вверх ногами" }, 
-                { de: "Clip: nicht in Position", tr: "Klips: Pozisyonda değil", en: "Clip: not in position", ro: "Clip: nu este pe poziție", ru: "Клипса: не на месте" }, 
-                { de: "Clip: falscher Clip", tr: "Klips: Yanlış klips", en: "Clip: wrong clip", ro: "Clip: clip greșit", ru: "Клипса: неправильная клипса" }, 
-                { de: "Buchse: fehlt", tr: "Burç: Eksik", en: "Bushing: missing", ro: "Bucșă: lipsă", ru: "Втулка: отсутствует" }, 
-                { de: "Buchse: nicht in Position", tr: "Burç: Pozisyonda değil", en: "Bushing: not in position", ro: "Bucșă: nu este pe poziție", ru: "Втулка: не на месте" }, 
-                { de: "weißer Punkt (Variante 03/04): fehlt", tr: "Beyaz nokta: Eksik", en: "White dot: missing", ro: "Punct alb: lipsă", ru: "Белая точка: отсутствует" }
-            ],
-            "Windlaut": [ 
-                { de: "Weichkomponente: Anguss nicht entfernt", tr: "Yumuşak parça: Yolluk alınmamış", en: "Soft comp: Sprue not removed", ro: "Comp. moale: Canal de turnare neîndepărtat", ru: "Мягкий комп.: Литник не удален" }, 
-                { de: "Weichkomponente: nicht vollständig", tr: "Yumuşak parça: Tam değil", en: "Soft comp: incomplete", ro: "Comp. moale: incomplet", ru: "Мягкий комп.: неполный" }, 
-                { de: "Weichkomponente: beschädigt", tr: "Yumuşak parça: Hasarlı", en: "Soft comp: Damaged", ro: "Comp. moale: Deteriorat", ru: "Мягкий комп.: Поврежден" }, 
-                { de: "Hartkomponente: nicht vollständig", tr: "Sert parça: Tam değil", en: "Hard comp: incomplete", ro: "Comp. dură: incomplet", ru: "Твердый комп.: неполный" }, 
-                { de: "Hartkomponente: Einfallstelle, Blase", tr: "Sert parça: Çöküntü, Baloncuk", en: "Hard comp: Sink mark, Bubble", ro: "Comp. dură: Urmă de scufundare, Bulă", ru: "Твердый комп.: Утяжина, Пузырь" }, 
-                { de: "Oberfläche: Schlieren / Glanzstellen", tr: "Yüzey: Hare / Parlama izi", en: "Surface: Streaks / Shiny spots", ro: "Suprafață: Dungi / Pete lucioase", ru: "Поверхность: Полосы / Блестящие пятна" }, 
-                { de: "Wischertülle: nicht voll. ausgeformt", tr: "Silecek lastiği: Tam şekil almamış", en: "Wiper grommet: not fully formed", ro: "Garnitură ștergător: formată incomplet", ru: "Втулка стеклоочистителя: сформирована неполностью" }, 
-                { de: "Wischertülle: Fließfehler", tr: "Silecek lastiği: Akış hatası", en: "Wiper grommet: Flow mark", ro: "Garnitură ștergător: Eroare de curgere", ru: "Втулка стеклоочистителя: Ошибка текучести" }, 
-                { de: "Wischertülle: Nicht in Position", tr: "Silecek lastiği: Pozisyonda değil", en: "Wiper grommet: Not in position", ro: "Garnitură ștergător: Nu e pe poziție", ru: "Втулка стеклоочистителя: Не на месте" }, 
-                { de: "POM-Ring: fehlt", tr: "POM-Halka: Eksik", en: "POM-Ring: missing", ro: "Inel POM: lipsă", ru: "POM-Кольцо: отсутствует" }, 
-                { de: "POM-Ring: nicht richtig montiert", tr: "POM-Halka: Yanlış montajlı", en: "POM-Ring: incorrectly mounted", ro: "Inel POM: montat greșit", ru: "POM-Кольцо: установлено неправильно" }, 
-                { de: "Pad: fehlt", tr: "Ped: Eksik", en: "Pad: missing", ro: "Pad: lipsă", ru: "Подушечка: отсутствует" }, 
-                { de: "Clip: fehler", tr: "Klips: Hatalı", en: "Clip: Error", ro: "Clip: Eroare", ru: "Клипса: Ошибка" }
-            ],
-            "Motorabdeckung Q-Tor": [ 
-                { de: "Formfehler: nicht voll ausgeformt", tr: "Form hatası: Tam şekil almamış", en: "Form error: not fully formed", ro: "Eroare formă: formată incomplet", ru: "Ошибка формы: сформирована неполностью" }, 
-                { de: "Oberfläche: beschädigt/verkratzt", tr: "Yüzey: Hasarlı/Çizik", en: "Surface: damaged/scratched", ro: "Suprafață: deteriorată/zgâriată", ru: "Поверхность: повреждена/поцарапана" }, 
-                { de: "Oberfläche: Einfallstelle, Blase", tr: "Yüzey: Çöküntü, Baloncuk", en: "Surface: Sink mark, Bubble", ro: "Suprafață: Urmă de scufundare, Bulă", ru: "Поверхность: Утяжина, Пузырь" }, 
-                { de: "Oberfläche: Schlieren / Glanzstellen", tr: "Yüzey: Hare / Parlama izi", en: "Surface: Streaks / Shiny spots", ro: "Suprafață: Dungi / Pete lucioase", ru: "Поверхность: Полосы / Блестящие пятна" }, 
-                { de: "Oberfläche: Schweißpunkt", tr: "Yüzey: Kaynak izi", en: "Surface: Weld mark", ro: "Suprafață: Punct de sudură", ru: "Поверхность: Точка сварки" }, 
-                { de: "Farbdruck: nicht voll / nicht in Position", tr: "Baskı: Tam değil / Pozisyonda değil", en: "Color print: not full / not in position", ro: "Imprimare color: incompletă / nu e pe poziție", ru: "Цветная печать: неполная / не на месте" }, 
-                { de: "Emblem fehlt", tr: "Amblem eksik", en: "Emblem missing", ro: "Emblemă lipsă", ru: "Эмблема отсутствует" }, 
-                { de: "Emblem nicht richtig montiert", tr: "Amblem yanlış montajlı", en: "Emblem incorrectly mounted", ro: "Emblemă montată greșit", ru: "Эмблема установлена неправильно" }, 
-                { de: "Emblem beschädigt/verkratzt / Farbfehler", tr: "Amblem hasarlı/çizik/renk hatalı", en: "Emblem damaged/scratched / Color error", ro: "Emblemă deteriorată/zgâriată / Eroare culoare", ru: "Эмблема повреждена/поцарапана / Ошибка цвета" }, 
-                { de: "Snaploc fehlt", tr: "Snaploc eksik", en: "Snaploc missing", ro: "Snaploc lipsă", ru: "Snaploc отсутствует" }, 
-                { de: "Snaploc falsch montiert", tr: "Snaploc yanlış montajlı", en: "Snaploc incorrectly mounted", ro: "Snaploc montat greșit", ru: "Snaploc установлен неправильно" }, 
-                { de: "DMC/RFID Etikett fehlt", tr: "DMC/RFID Etiketi eksik", en: "DMC/RFID Label missing", ro: "Etichetă DMC/RFID lipsă", ru: "DMC/RFID Этикетка отсутствует" }, 
-                { de: "DMC/RFID Etikett falsch", tr: "DMC/RFID Etiketi yanlış", en: "DMC/RFID Label wrong", ro: "Etichetă DMC/RFID greșită", ru: "DMC/RFID Этикетка неправильная" }, 
-                { de: "Vlies nicht geschweißt", tr: "Keçe kaynatılmamış", en: "Fleece not welded", ro: "Fleece nesudat", ru: "Флис не сварен" }, 
-                { de: "Vlies Schweißfehler", tr: "Keçe kaynak hatası", en: "Fleece welding error", ro: "Eroare sudură fleece", ru: "Ошибка сварки флиса" }
-            ],
-            "Motorabdeckung": [ 
-                { de: "Hartkomponente nicht voll", tr: "Sert parça tam değil", en: "Hard comp not full", ro: "Comp. dură incomplet", ru: "Твердый комп. не полный" }, 
-                { de: "Oberflächenfehler", tr: "Yüzey hatası", en: "Surface defect", ro: "Defect de suprafață", ru: "Дефект поверхности" }, 
-                { de: "Blasen", tr: "Baloncuklar", en: "Bubbles", ro: "Bule", ru: "Пузыри" }, 
-                { de: "Beschädigung", tr: "Hasar", en: "Damage", ro: "Deteriorare", ru: "Повреждение" }, 
-                { de: "Überspritzt/Gratbildung", tr: "Taşma/Çapak oluşumu", en: "Overshot/Burr formation", ro: "Depășire/Formare bavuri", ru: "Перелив/Образование заусенцев" }, 
-                { de: "Verzug", tr: "Çarpılma/Yamulma", en: "Distortion", ro: "Distorsiune", ru: "Искажение" }, 
-                { de: "Bedruckung", tr: "Baskı", en: "Printing", ro: "Imprimare", ru: "Печать" }, 
-                { de: "Montagefehler/Schweißfehler", tr: "Montaj/Kaynak hatası", en: "Assembly/Welding error", ro: "Eroare de montaj/sudură", ru: "Ошибка сборки/сварки" }, 
-                { de: "Barcode", tr: "Barkod", en: "Barcode", ro: "Cod de bare", ru: "Штрих-код" }, 
-                { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" }, 
-                { de: "Emblem beschädigt/verkratzt", tr: "Amblem hasarlı/çizik", en: "Emblem damaged/scratched", ro: "Emblemă deteriorată/zgâriată", ru: "Эмблема повреждена/поцарапана" }
-            ],
-            "Standard": [ 
-                { de: "Hartkomponente nicht voll", tr: "Sert parça tam değil", en: "Hard comp not full", ro: "Comp. dură incomplet", ru: "Твердый комп. не полный" }, 
-                { de: "Weichkomponente nicht voll", tr: "Yumuşak parça tam değil", en: "Soft comp not full", ro: "Comp. moale incomplet", ru: "Мягкий комп. не полный" }, 
-                { de: "Oberflächenfehler", tr: "Yüzey hatası", en: "Surface defect", ro: "Defect de suprafață", ru: "Дефект поверхности" }, 
-                { de: "Kratzer", tr: "Çizik", en: "Scratch", ro: "Zgârietură", ru: "Царапина" }, 
-                { de: "Blasen", tr: "Baloncuklar", en: "Bubbles", ro: "Bule", ru: "Пузыри" }, 
-                { de: "Beschädigung", tr: "Hasar", en: "Damage", ro: "Deteriorare", ru: "Повреждение" }, 
-                { de: "Überspritzt/Gratbildung", tr: "Taşma/Çapak oluşumu", en: "Overshot/Burr formation", ro: "Depășire/Formare bavuri", ru: "Перелив/Образование заусенцев" }, 
-                { de: "Verzug", tr: "Çarpılma/Yamulma", en: "Distortion", ro: "Distorsiune", ru: "Искажение" }, 
-                { de: "Haftung hart/weich n.i.O.", tr: "Sert/Yumuşak yapışması hatalı", en: "Adhesion hard/soft NOK", ro: "Aderență dur/moale NOK", ru: "Адгезия твердый/мягкий НОК" }, 
-                { de: "Übergang hart/weich n.i.O.", tr: "Sert/Yumuşak geçişi hatalı", en: "Transition hard/soft NOK", ro: "Tranziție dur/moale NOK", ru: "Переход твердый/мягкий НОК" }, 
-                { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" }, 
-                { de: "Weißer Punkt", tr: "Beyaz nokta", en: "White dot", ro: "Punct alb", ru: "Белая точка" }, 
-                { de: "Montageteil fehlt", tr: "Montaj parçası eksik", en: "Mounting part missing", ro: "Piesă de montaj lipsă", ru: "Монтажная деталь отсутствует" }
-            ]
-        };
     
-       // 5 Dilde Uygulama Sabit Metinleri Çeviri Havuzu (Güncel)
-    const i18n = {
-    "tr": { 
-        "header_sub": "Hata Kodu Seçimi", "setup_desc": "Lütfen vardiya bilgilerinizi teyit edin.", 
-        "setup_title": "Hoş Geldiniz", "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", 
-        "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", "start": "Başla", "c1": "Yağ Karteri", 
-        "c2": "Hava Filtresi Tutucu", "c3": "Ses Çıkış Elemanı", "c4": "Motor Kapağı Q-Tor", 
-        "c5": "Motor Kapağı", "c6": "Standart Hatalar", "back": "Geri Dön", "submit": "Kaydet / Gönder", 
-        "mod_title": "Son Kontrol", "mod_tot": "Toplam Hata:" 
-    },
-    "de": { 
-        "header_sub": "Fehlercode-Auswahl", "setup_desc": "Bitte bestätigen Sie Ihre Schichtdaten.", 
-        "setup_title": "Willkommen", "s_date": "Datum", "s_shift": "Schicht", "s_pers": "Pers.Nr *", 
-        "s_mac": "Maschine", "s_bau": "Bauteilnr", "start": "Starten", "c1": "Ölwanne", 
-        "c2": "Halter Luftfilter", "c3": "Windlaut", "c4": "Motorabdeckung Q-Tor", 
-        "c5": "Motorabdeckung", "c6": "Standardfehler", "back": "Zurück", "submit": "Speichern", 
-        "mod_title": "Kontrolle", "mod_tot": "Gesamtfehler:" 
-    },
-    "en": { 
-        "header_sub": "Error Code Selection", "setup_desc": "Please confirm your shift details.", 
-        "setup_title": "Welcome", "s_date": "Date", "s_shift": "Shift", "s_pers": "Personnel No *", 
-        "s_mac": "Machine Code", "s_bau": "Product Code", "start": "Start", "c1": "Oil Pan", 
-        "c2": "Air Filter Holder", "c3": "Sound Emitter", "c4": "Engine Cover Q-Tor", 
-        "c5": "Engine Cover", "c6": "Standard Errors", "back": "Go Back", "submit": "Save / Submit", 
-        "mod_title": "Final Check", "mod_tot": "Total Errors:" 
-    },
-    "ro": { 
-        "header_sub": "Selectare cod eroare", "setup_desc": "Vă rugăm să confirmați datele schimbului.", 
-        "setup_title": "Bun venit", "s_date": "Data", "s_shift": "Schimb", "s_pers": "Nr. Personal *", 
-        "s_mac": "Mașină", "s_bau": "Cod Produs", "start": "Start", "c1": "Baie de ulei", 
-        "c2": "Suport filtru aer", "c3": "Emițător sunet", "c4": "Capac motor Q-Tor", 
-        "c5": "Capac motor", "c6": "Erori standard", "back": "Înapoi", "submit": "Salvare", 
-        "mod_title": "Verificare Finală", "mod_tot": "Total Erori:" 
-    },
-    "ru": { 
-        "header_sub": "Выбор кода ошибки", "setup_desc": "Пожалуйста, подтвердите данные смены.", 
-        "setup_title": "Добро пожаловать", "s_date": "Дата", "s_shift": "Смена", "s_pers": "Перс. номер *", 
-        "s_mac": "Машина", "s_bau": "Код продукта", "start": "Начать", "c1": "Масляный поддон", 
-        "c2": "Держатель фильтра", "c3": "Звуковой излучатель", "c4": "Крышка двигателя Q-Tor", 
-        "c5": "Крышка двигателя", "c6": "Стандартные ошибки", "back": "Назад", "submit": "Сохранить", 
-        "mod_title": "Финальная проверка", "mod_tot": "Всего ошибок:" 
-    }
-   };
+    // Geçerli Makine Listesi
+    const baseMachines = ["400-2", "400-3", "500-9", "600-4", "600-7", "650-2", "650-8", "800-1", "800-4", "850-2", "850-3", "850-4", "900-1", "1000-3", "1000-4", "1100-1", "1450-1", "1600-3", "1700-2", "1700-3"];
+    
+    // Parça - Hata Eşleşmeleri
+    const db = {
+        "Ölwanne": [ 
+            { de: "Ölwanne nicht dicht", tr: "Yağ karteri sızdırıyor", en: "Oil pan leaking", ro: "Baie de ulei neetanșă", ru: "Масляный поддон протекает" }, 
+            { de: "Maschinen-/ Anlagenstörung", tr: "Makine/Tesis arızası", en: "Machine/Plant fault", ro: "Defecțiune mașină/instalație", ru: "Неисправность машины/установки" }, 
+            { de: "Teile nicht voll", tr: "Parçalar tam değil", en: "Parts not full", ro: "Piese incomplete", ru: "Детали не полные" }, 
+            { de: "Gratbildung", tr: "Çapak oluşumu", en: "Burr formation", ro: "Formare bavuri", ru: "Образование заусенцев" }, 
+            { de: "Buchse nicht richtig montiert/fehlt", tr: "Burç yanlış montajlı/eksik", en: "Bushing incorrectly mounted/missing", ro: "Bucșă montată greșit/lipsă", ru: "Втулка установлена неправильно/отсутствует" }, 
+            { de: "Schraube fehlt", tr: "Vida eksik", en: "Screw missing", ro: "Șurub lipsă", ru: "Отсутствует винт" }, 
+            { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" } 
+        ],
+        "Halter Luftfilter": [ 
+            { de: "Formfehler: nicht vollständig", tr: "Form hatası: Tam değil", en: "Form error: incomplete", ro: "Eroare formă: incomplet", ru: "Ошибка формы: неполная" }, 
+            { de: "Formfehler: Grat vorhanden", tr: "Form hatası: Çapak var", en: "Form error: Burr present", ro: "Eroare formă: Bavură prezentă", ru: "Ошибка формы: Присутствует заусенец" }, 
+            { de: "Clip: fehlt", tr: "Klips: Eksik", en: "Clip: missing", ro: "Clip: lipsă", ru: "Клипса: отсутствует" }, 
+            { de: "Clip: falsch herum montiert", tr: "Klips: Ters monte edilmiş", en: "Clip: mounted upside down", ro: "Clip: montat invers", ru: "Клипса: установлена вверх ногами" }, 
+            { de: "Clip: nicht in Position", tr: "Klips: Pozisyonda değil", en: "Clip: not in position", ro: "Clip: nu este pe poziție", ru: "Клипса: не на месте" }, 
+            { de: "Clip: falscher Clip", tr: "Klips: Yanlış klips", en: "Clip: wrong clip", ro: "Clip: clip greșit", ru: "Клипса: неправильная клипса" }, 
+            { de: "Buchse: fehlt", tr: "Burç: Eksik", en: "Bushing: missing", ro: "Bucșă: lipsă", ru: "Втулка: отсутствует" }, 
+            { de: "Buchse: nicht in Position", tr: "Burç: Pozisyonda değil", en: "Bushing: not in position", ro: "Bucșă: nu este pe poziție", ru: "Втулка: не на месте" }, 
+            { de: "weißer Punkt (Variante 03/04): fehlt", tr: "Beyaz nokta: Eksik", en: "White dot: missing", ro: "Punct alb: lipsă", ru: "Белая точка: отсутствует" }
+        ],
+        "Windlaut": [ 
+            { de: "Weichkomponente: Anguss nicht entfernt", tr: "Yumuşak parça: Yolluk alınmamış", en: "Soft comp: Sprue not removed", ro: "Comp. moale: Canal de turnare neîndepărtat", ru: "Мягкий комп.: Литник не удален" }, 
+            { de: "Weichkomponente: nicht vollständig", tr: "Yumuşak parça: Tam değil", en: "Soft comp: incomplete", ro: "Comp. moale: incomplet", ru: "Мягкий комп.: неполный" }, 
+            { de: "Weichkomponente: beschädigt", tr: "Yumuşak parça: Hasarlı", en: "Soft comp: Damaged", ro: "Comp. moale: Deteriorat", ru: "Мягкий комп.: Поврежден" }, 
+            { de: "Hartkomponente: nicht vollständig", tr: "Sert parça: Tam değil", en: "Hard comp: incomplete", ro: "Comp. dură: incomplet", ru: "Твердый комп.: неполный" }, 
+            { de: "Hartkomponente: Einfallstelle, Blase", tr: "Sert parça: Çöküntü, Baloncuk", en: "Hard comp: Sink mark, Bubble", ro: "Comp. dură: Urmă de scufundare, Bulă", ru: "Твердый комп.: Утяжина, Пузырь" }, 
+            { de: "Oberfläche: Schlieren / Glanzstellen", tr: "Yüzey: Hare / Parlama izi", en: "Surface: Streaks / Shiny spots", ro: "Suprafață: Dungi / Pete lucioase", ru: "Поверхность: Полосы / Блестящие пятна" }, 
+            { de: "Wischertülle: nicht voll. ausgeformt", tr: "Silecek lastiği: Tam şekil almamış", en: "Wiper grommet: not fully formed", ro: "Garnitură ștergător: formată incomplet", ru: "Втулка стеклоочистителя: сформирована неполностью" }, 
+            { de: "Wischertülle: Fließfehler", tr: "Silecek lastiği: Akış hatası", en: "Wiper grommet: Flow mark", ro: "Garnitură ștergător: Eroare de curgere", ru: "Втулка стеклоочистителя: Ошибка текучести" }, 
+            { de: "Wischertülle: Nicht in Position", tr: "Silecek lastiği: Pozisyonda değil", en: "Wiper grommet: Not in position", ro: "Garnitură ștergător: Nu e pe poziție", ru: "Втулка стеклоочистителя: Не на месте" }, 
+            { de: "POM-Ring: fehlt", tr: "POM-Halka: Eksik", en: "POM-Ring: missing", ro: "Inel POM: lipsă", ru: "POM-Кольцо: отсутствует" }, 
+            { de: "POM-Ring: nicht richtig montiert", tr: "POM-Halka: Yanlış montajlı", en: "POM-Ring: incorrectly mounted", ro: "Inel POM: montat greșit", ru: "POM-Кольцо: установлено неправильно" }, 
+            { de: "Pad: fehlt", tr: "Ped: Eksik", en: "Pad: missing", ro: "Pad: lipsă", ru: "Подушечка: отсутствует" }, 
+            { de: "Clip: fehler", tr: "Klips: Hatalı", en: "Clip: Error", ro: "Clip: Eroare", ru: "Клипса: Ошибка" }
+        ],
+        "Motorabdeckung Q-Tor": [ 
+            { de: "Formfehler: nicht voll ausgeformt", tr: "Form hatası: Tam şekil almamış", en: "Form error: not fully formed", ro: "Eroare formă: formată incomplet", ru: "Ошибка формы: сформирована неполностью" }, 
+            { de: "Oberfläche: beschädigt/verkratzt", tr: "Yüzey: Hasarlı/Çizik", en: "Surface: damaged/scratched", ro: "Suprafață: deteriorată/zgâriată", ru: "Поверхность: повреждена/поцарапана" }, 
+            { de: "Oberfläche: Einfallstelle, Blase", tr: "Yüzey: Çöküntü, Baloncuk", en: "Surface: Sink mark, Bubble", ro: "Suprafață: Urmă de scufundare, Bulă", ru: "Поверхность: Утяжина, Пузырь" }, 
+            { de: "Oberfläche: Schlieren / Glanzstellen", tr: "Yüzey: Hare / Parlama izi", en: "Surface: Streaks / Shiny spots", ro: "Suprafață: Dungi / Pete lucioase", ru: "Поверхность: Полосы / Блестящие пятна" }, 
+            { de: "Oberfläche: Schweißpunkt", tr: "Yüzey: Kaynak izi", en: "Surface: Weld mark", ro: "Suprafață: Punct de sudură", ru: "Поверхность: Точка сварки" }, 
+            { de: "Farbdruck: nicht voll / nicht in Position", tr: "Baskı: Tam değil / Pozisyonda değil", en: "Color print: not full / not in position", ro: "Imprimare color: incompletă / nu e pe poziție", ru: "Цветная печать: неполная / не на месте" }, 
+            { de: "Emblem fehlt", tr: "Amblem eksik", en: "Emblem missing", ro: "Emblemă lipsă", ru: "Эмблема отсутствует" }, 
+            { de: "Emblem nicht richtig montiert", tr: "Amblem yanlış montajlı", en: "Emblem incorrectly mounted", ro: "Emblemă montată greșit", ru: "Эмблема установлена неправильно" }, 
+            { de: "Emblem beschädigt/verkratzt / Farbfehler", tr: "Amblem hasarlı/çizik/renk hatalı", en: "Emblem damaged/scratched / Color error", ro: "Emblemă deteriorată/zgâriată / Eroare culoare", ru: "Эмблема повреждена/поцарапана / Ошибка цвета" }, 
+            { de: "Snaploc fehlt", tr: "Snaploc eksik", en: "Snaploc missing", ro: "Snaploc lipsă", ru: "Snaploc отсутствует" }, 
+            { de: "Snaploc falsch montiert", tr: "Snaploc yanlış montajlı", en: "Snaploc incorrectly mounted", ro: "Snaploc montat greșit", ru: "Snaploc установлен неправильно" }, 
+            { de: "DMC/RFID Etikett fehlt", tr: "DMC/RFID Etiketi eksik", en: "DMC/RFID Label missing", ro: "Etichetă DMC/RFID lipsă", ru: "DMC/RFID Этикетка отсутствует" }, 
+            { de: "DMC/RFID Etikett falsch", tr: "DMC/RFID Etiketi yanlış", en: "DMC/RFID Label wrong", ro: "Etichetă DMC/RFID greșită", ru: "DMC/RFID Этикетка неправильная" }, 
+            { de: "Vlies nicht geschweißt", tr: "Keçe kaynatılmamış", en: "Fleece not welded", ro: "Fleece nesudat", ru: "Флис не сварен" }, 
+            { de: "Vlies Schweißfehler", tr: "Keçe kaynak hatası", en: "Fleece welding error", ro: "Eroare sudură fleece", ru: "Ошибка сварки флиса" }
+        ],
+        "Motorabdeckung": [ 
+            { de: "Hartkomponente nicht voll", tr: "Sert parça tam değil", en: "Hard comp not full", ro: "Comp. dură incomplet", ru: "Твердый комп. не полный" }, 
+            { de: "Oberflächenfehler", tr: "Yüzey hatası", en: "Surface defect", ro: "Defect de suprafață", ru: "Дефект поверхности" }, 
+            { de: "Blasen", tr: "Baloncuklar", en: "Bubbles", ro: "Bule", ru: "Пузыри" }, 
+            { de: "Beschädigung", tr: "Hasar", en: "Damage", ro: "Deteriorare", ru: "Повреждение" }, 
+            { de: "Überspritzt/Gratbildung", tr: "Taşma/Çapak oluşumu", en: "Overshot/Burr formation", ro: "Depășire/Formare bavuri", ru: "Перелив/Образование заусенцев" }, 
+            { de: "Verzug", tr: "Çarpılma/Yamulma", en: "Distortion", ro: "Distorsiune", ru: "Искажение" }, 
+            { de: "Bedruckung", tr: "Baskı", en: "Printing", ro: "Imprimare", ru: "Печать" }, 
+            { de: "Montagefehler/Schweißfehler", tr: "Montaj/Kaynak hatası", en: "Assembly/Welding error", ro: "Eroare de montaj/sudură", ru: "Ошибка сборки/сварки" }, 
+            { de: "Barcode", tr: "Barkod", en: "Barcode", ro: "Cod de bare", ru: "Штрих-код" }, 
+            { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" }, 
+            { de: "Emblem beschädigt/verkratzt", tr: "Amblem hasarlı/çizik", en: "Emblem damaged/scratched", ro: "Emblemă deteriorată/zgâriată", ru: "Эмблема повреждена/поцарапана" }
+        ],
+        "Standard": [ 
+            { de: "Hartkomponente nicht voll", tr: "Sert parça tam değil", en: "Hard comp not full", ro: "Comp. dură incomplet", ru: "Твердый комп. не полный" }, 
+            { de: "Weichkomponente nicht voll", tr: "Yumuşak parça tam değil", en: "Soft comp not full", ro: "Comp. moale incomplet", ru: "Мягкий комп. не полный" }, 
+            { de: "Oberflächenfehler", tr: "Yüzey hatası", en: "Surface defect", ro: "Defect de suprafață", ru: "Дефект поверхности" }, 
+            { de: "Kratzer", tr: "Çizik", en: "Scratch", ro: "Zgârietură", ru: "Царапина" }, 
+            { de: "Blasen", tr: "Baloncuklar", en: "Bubbles", ro: "Bule", ru: "Пузыри" }, 
+            { de: "Beschädigung", tr: "Hasar", en: "Damage", ro: "Deteriorare", ru: "Повреждение" }, 
+            { de: "Überspritzt/Gratbildung", tr: "Taşma/Çapak oluşumu", en: "Overshot/Burr formation", ro: "Depășire/Formare bavuri", ru: "Перелив/Образование заусенцев" }, 
+            { de: "Verzug", tr: "Çarpılma/Yamulma", en: "Distortion", ro: "Distorsiune", ru: "Искажение" }, 
+            { de: "Haftung hart/weich n.i.O.", tr: "Sert/Yumuşak yapışması hatalı", en: "Adhesion hard/soft NOK", ro: "Aderență dur/moale NOK", ru: "Адгезия твердый/мягкий НОК" }, 
+            { de: "Übergang hart/weich n.i.O.", tr: "Sert/Yumuşak geçişi hatalı", en: "Transition hard/soft NOK", ro: "Tranziție dur/moale NOK", ru: "Переход твердый/мягкий НОК" }, 
+            { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" }, 
+            { de: "Weißer Punkt", tr: "Beyaz nokta", en: "White dot", ro: "Punct alb", ru: "Белая точка" }, 
+            { de: "Montageteil fehlt", tr: "Montaj parçası eksik", en: "Mounting part missing", ro: "Piesă de montaj lipsă", ru: "Монтажная деталь отсутствует" }
+        ]
+    };
 
+    // 5 Dilde Uygulama Sabit Metinleri Çeviri Havuzu (Tam Kapsamlı)
+    const i18n = {
+        "tr": { 
+            "header_sub": "Hata Kodu Seçimi", "setup_desc": "Lütfen vardiya bilgilerinizi teyit edin.", "setup_title": "Hoş Geldiniz", "inst_title": "Parça Tipi Seçin",
+            "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", "start": "Başla", 
+            "c1": "Yağ Karteri", "c2": "Hava Filtresi Tutucu", "c3": "Ses Çıkış Elemanı", "c4": "Motor Kapağı Q-Tor", "c5": "Motor Kapağı", "c6": "Standart Hatalar", 
+            "back": "Geri Dön", "submit": "Kaydet / Gönder", 
+            "mod_title": "Son Kontrol", "mod_tot": "Toplam Hata:", "mod_date": "Tarih:", "mod_shift": "Vardiya:", "mod_pers": "Pers.No:", "mod_mac": "Makine:", "mod_bau": "Ürün Kodu:", "mod_cat": "Kategori:",
+            "mod_cancel": "İptal", "mod_confirm": "Onayla",
+            "foot_date": "Tarih", "foot_shift": "Vardiya", "foot_pers": "Pers.No", "foot_mac": "Makine", "foot_bau": "Ürün",
+            "al_pers": "Lütfen Personel Numaranızı giriniz!", 
+            "al_mac_fmt": "Makine numarası formatı hatalı! \nLütfen araya tire koyarak giriniz (Örn: 400-2)", 
+            "al_mac_not": "DİKKAT: Makine kayıtlı listede bulunamadı!\nDevam etmek istiyor musunuz?",
+            "al_db_mock": "Veri başarıyla paketlendi (Mock)! Konsolu kontrol edin."
+        },
+        "de": { 
+            "header_sub": "Fehlercode-Auswahl", "setup_desc": "Bitte bestätigen Sie Ihre Schichtdaten.", "setup_title": "Willkommen", "inst_title": "Bitte Bauteil Auswählen",
+            "s_date": "Datum", "s_shift": "Schicht", "s_pers": "Pers.Nr *", "s_mac": "Maschine", "s_bau": "Bauteilnr", "start": "Starten", 
+            "c1": "Ölwanne", "c2": "Halter Luftfilter", "c3": "Windlaut", "c4": "Motorabdeckung Q-Tor", "c5": "Motorabdeckung", "c6": "Standardfehler", 
+            "back": "Zurück", "submit": "Speichern", 
+            "mod_title": "Kontrolle", "mod_tot": "Gesamtfehler:", "mod_date": "Datum:", "mod_shift": "Schicht:", "mod_pers": "Pers.Nr:", "mod_mac": "Maschine:", "mod_bau": "Bauteilnr:", "mod_cat": "Kategorie:",
+            "mod_cancel": "Zurück", "mod_confirm": "Bestätigen",
+            "foot_date": "Datum", "foot_shift": "Schicht", "foot_pers": "Pers.Nr", "foot_mac": "Maschine", "foot_bau": "Bauteil",
+            "al_pers": "Bitte Personalnummer eingeben!", 
+            "al_mac_fmt": "Maschinenformat falsch! \nBitte mit Bindestrich eingeben (z.B. 400-2)", 
+            "al_mac_not": "Achtung: Maschine nicht gelistet! Möchten Sie trotzdem fortfahren?",
+            "al_db_mock": "Erfolgreich gepackt (Mock)! Überprüfen Sie die Konsole."
+        },
+        "en": { 
+            "header_sub": "Error Code Selection", "setup_desc": "Please confirm your shift details.", "setup_title": "Welcome", "inst_title": "Please Select Part Type",
+            "s_date": "Date", "s_shift": "Shift", "s_pers": "Personnel No *", "s_mac": "Machine Code", "s_bau": "Product Code", "start": "Start", 
+            "c1": "Oil Pan", "c2": "Air Filter Holder", "c3": "Sound Emitter", "c4": "Engine Cover Q-Tor", "c5": "Engine Cover", "c6": "Standard Errors", 
+            "back": "Go Back", "submit": "Save / Submit", 
+            "mod_title": "Final Check", "mod_tot": "Total Errors:", "mod_date": "Date:", "mod_shift": "Shift:", "mod_pers": "Pers.No:", "mod_mac": "Machine:", "mod_bau": "Product Code:", "mod_cat": "Category:",
+            "mod_cancel": "Cancel", "mod_confirm": "Confirm",
+            "foot_date": "Date", "foot_shift": "Shift", "foot_pers": "Pers.No", "foot_mac": "Machine", "foot_bau": "Product",
+            "al_pers": "Please enter Personnel Number!", 
+            "al_mac_fmt": "Machine format invalid! \nPlease enter with a hyphen (e.g., 400-2)", 
+            "al_mac_not": "Warning: Machine not listed! Do you want to continue?",
+            "al_db_mock": "Successfully packaged (Mock)! Check the console."
+        },
+        "ro": { 
+            "header_sub": "Selectare cod eroare", "setup_desc": "Vă rugăm să confirmați datele schimbului.", "setup_title": "Bun venit", "inst_title": "Selectați Tipul Piesei",
+            "s_date": "Data", "s_shift": "Schimb", "s_pers": "Nr. Personal *", "s_mac": "Mașină", "s_bau": "Cod Produs", "start": "Start", 
+            "c1": "Baie de ulei", "c2": "Suport filtru aer", "c3": "Emițător sunet", "c4": "Capac motor Q-Tor", "c5": "Capac motor", "c6": "Erori standard", 
+            "back": "Înapoi", "submit": "Salvare", 
+            "mod_title": "Verificare Finală", "mod_tot": "Total Erori:", "mod_date": "Data:", "mod_shift": "Schimb:", "mod_pers": "Nr.Pers:", "mod_mac": "Mașină:", "mod_bau": "Cod Produs:", "mod_cat": "Categorie:",
+            "mod_cancel": "Anulare", "mod_confirm": "Confirmare",
+            "foot_date": "Data", "foot_shift": "Schimb", "foot_pers": "Nr.Pers", "foot_mac": "Mașină", "foot_bau": "Produs",
+            "al_pers": "Vă rugăm să introduceți numărul de personal!", 
+            "al_mac_fmt": "Format mașină invalid! \nVă rugăm să folosiți cratima (ex. 400-2)", 
+            "al_mac_not": "Atenție: Mașina nu este în listă! Continuați?",
+            "al_db_mock": "Împachetat cu succes (Mock)! Verificați consola."
+        },
+        "ru": { 
+            "header_sub": "Выбор кода ошибки", "setup_desc": "Пожалуйста, подтвердите данные смены.", "setup_title": "Добро пожаловать", "inst_title": "Выберите Тип Детали",
+            "s_date": "Дата", "s_shift": "Смена", "s_pers": "Перс. номер *", "s_mac": "Машина", "s_bau": "Код продукта", "start": "Начать", 
+            "c1": "Масляный поддон", "c2": "Держатель фильтра", "c3": "Звуковой излучатель", "c4": "Крышка двигателя Q-Tor", "c5": "Крышка двигателя", "c6": "Стандартные ошибки", 
+            "back": "Назад", "submit": "Сохранить", 
+            "mod_title": "Финальная проверка", "mod_tot": "Всего ошибок:", "mod_date": "Дата:", "mod_shift": "Смена:", "mod_pers": "Перс.№:", "mod_mac": "Машина:", "mod_bau": "Код продукта:", "mod_cat": "Категория:",
+            "mod_cancel": "Отмена", "mod_confirm": "Подтвердить",
+            "foot_date": "Дата", "foot_shift": "Смена", "foot_pers": "Перс.№", "foot_mac": "Машина", "foot_bau": "Деталь",
+            "al_pers": "Пожалуйста, введите табельный номер!", 
+            "al_mac_fmt": "Неверный формат машины! \nПожалуйста, введите через дефис (напр. 400-2)", 
+            "al_mac_not": "Внимание: Машина не в списке! Продолжить?",
+            "al_db_mock": "Успешно упаковано (Mock)! Проверьте консоль."
+        }
+    };
 // ========================================================================= //
 // 🔺 MODÜL 3 BİTİŞ 🔺                                                       //
 // ========================================================================= //
 
 
-
 // ========================================================================= //
-// 🔻 MODÜL 4 BAŞLANGIÇ: MERKEZİ İŞLEMCİ (JS MANTIK MODÜLÜ) 🔻               //
+// 🔻 MODÜL 4: MERKEZİ İŞLEMCİ (JS MANTIK VE İŞLEYİŞ MODÜLÜ) 🔻              //
 // ========================================================================= //
 
-    
+    /**
+     * İşletim Sisteminin Zamanına Göre Vardiya Algılama Motoru
+     * Dakika bazlı hesaplama ile 06:30, 14:30 ve 22:30 kesişimlerini yakalar.
+     */
     function getAutoShift() {
-            let now = new Date();
-            let hour = now.getHours();
-            let min = now.getMinutes();
-            let totalMinutes = (hour * 60) + min;
+        let now = new Date();
+        let totalMinutes = (now.getHours() * 60) + now.getMinutes();
 
-            // Vardiya sınırları (Dakika cinsinden)
-            // Früh: 06:30 (390 dk) - 14:30 (870 dk)
-            // Spät: 14:30 (870 dk) - 22:30 (1350 dk)
-            // Nacht: 22:30 (1350 dk) - 06:30 (390 dk)
+        if (totalMinutes >= 390 && totalMinutes < 870) return "Frühschicht";
+        if (totalMinutes >= 870 && totalMinutes < 1350) return "Spätschicht";
+        return "Nachtschicht";
+    }
 
-            if (totalMinutes >= 390 && totalMinutes < 870) return "Frühschicht";
-            if (totalMinutes >= 870 && totalMinutes < 1350) return "Spätschicht";
-            return "Nachtschicht";
+    let activePart = ""; // Seçilen parça/form bilgisini hafızada tutar
+
+    /**
+     * Sayfa Yüklendiğinde İlk Çalışacak Fonksiyon (Boot)
+     * Kayıtlı verileri çeker, saati günceller ve çevirileri uygular.
+     */
+    window.onload = function() {
+        let savedLang = localStorage.getItem('appLang') || 'tr'; 
+        document.getElementById('langSelect').value = savedLang;
+        
+        loadMachineList(); // Datalist (Önerilen Makineler) doldurulur
+        applyTranslations(savedLang); // HATA DÜZELTİLDİ: Çeviri tetiklenmesi buraya alındı.
+
+        // Son kayıtlı verileri LocalStorage'dan alıp form elemanlarına basma
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById('inp_date').value = localStorage.getItem('savedDate') || today;
+        document.getElementById('inp_shift').value = localStorage.getItem('savedShift') || getAutoShift();
+        document.getElementById('inp_persnr').value = localStorage.getItem('savedPersnr') || "";
+        document.getElementById('inp_maschine').value = localStorage.getItem('savedMaschine') || "";
+        document.getElementById('inp_bauteilnr').value = localStorage.getItem('savedBauteilnr') || "";
+        
+        // Sağ alt köşeye dosyanın son güncellenme tarihini (Sürüm takibi) basma
+        let lastModified = new Date(document.lastModified);
+        let formattedDate = lastModified.toLocaleDateString('tr-TR') + " " + 
+                lastModified.toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'});
+        document.getElementById('version-tag').innerText = "v1.0.5 - " + formattedDate;
+        
+        showSetup(); // İlk ekranı (Vardiya Ayarı) göster
+    };
+
+    /**
+     * Sadece "Ayar / Vardiya" Ekranını Gösterir (Panoyu Gizler)
+     */
+    function showSetup() {
+        document.getElementById('dashboard-view').style.display = 'none';
+        document.getElementById('form-view').style.display = 'none';
+        document.getElementById('setup-view').style.display = 'flex';
+    }
+
+    /**
+     * Setup Ekranında "Başla" Butonuna Basıldığında Çalışır.
+     * Verileri doğrular, hafızaya alır ve panoya geçer.
+     */
+    function startApp() {
+        let lang = document.getElementById('langSelect').value;
+        let t = i18n[lang]; // Seçili dil havuzunu al
+
+        let dat = document.getElementById('inp_date').value;
+        let shf = document.getElementById('inp_shift').value;
+        let pnr = document.getElementById('inp_persnr').value;
+        let mac = document.getElementById('inp_maschine').value;
+        let bau = document.getElementById('inp_bauteilnr').value;
+
+        // Personel No zorunlu alan kontrolü
+        if(!pnr) { alert(t.al_pers); return; }
+
+        // Makine Kuralı Kontrolü (Varsa)
+        if(mac !== "") {
+            // Regex ile 3/4 hane - 1/2 hane kuralı denetimi
+            let formatKurali = /^\d{3,4}-\d{1,2}$/;
+            if(!formatKurali.test(mac)) {
+                alert(t.al_mac_fmt);
+                return; 
+            }
+            // Hibrit Onay (Tanımlı değilse uyar ama izne bağla)
+            if(!baseMachines.includes(mac)) {
+                let eminMisiniz = confirm(t.al_mac_not);
+                if(!eminMisiniz) return; // Operatör İptal derse devam etme
+            }
         }
 
-    
+        // Verileri Tarayıcı Hafızasına (LocalStorage) kaydet
+        localStorage.setItem('savedDate', dat);
+        localStorage.setItem('savedShift', shf);
+        localStorage.setItem('savedPersnr', pnr);
+        localStorage.setItem('savedMaschine', mac);
+        localStorage.setItem('savedBauteilnr', bau);
 
-        let activePart = "";
-        window.onload = function() {
-            let savedLang = localStorage.getItem('appLang') || 'tr'; 
-            document.getElementById('langSelect').value = savedLang;
-            applyTranslations(savedLang);
-            loadMachineList();
+        // Panonun en altındaki (Footer) gösterge paneline değerleri yaz
+        document.getElementById('val_date').innerText = dat;
+        document.getElementById('val_shift').innerText = shf.replace("schicht", ""); 
+        document.getElementById('val_pers').innerText = pnr;
+        document.getElementById('val_mac').innerText = mac || "-";
+        document.getElementById('val_bau').innerText = bau || "-";
 
-            let today = new Date().toISOString().split('T')[0];
-            document.getElementById('inp_date').value = localStorage.getItem('savedDate') || today;
-            document.getElementById('inp_shift').value = localStorage.getItem('savedShift') || getAutoShift();
-            document.getElementById('inp_persnr').value = localStorage.getItem('savedPersnr') || "";
-            document.getElementById('inp_maschine').value = localStorage.getItem('savedMaschine') || "";
-            document.getElementById('inp_bauteilnr').value = localStorage.getItem('savedBauteilnr') || "";
-            
-            document.getElementById('lbl_setup_desc').innerText = t.setup_desc;
+        // Panoya (Katalog) Geçiş Yap
+        document.getElementById('setup-view').style.display = 'none';
+        document.getElementById('dashboard-view').style.display = 'block';
+    }
 
+    /**
+     * Panoda bir Ürün Kartına Tıklandığında Hata Formunu Oluşturur
+     */
+    function openForm(partName) {
+        activePart = partName;
+        document.getElementById('dashboard-view').style.display = 'none';
+        document.getElementById('form-view').style.display = 'block';
+        document.getElementById('form-title').innerText = partName;
+        
+        let listDiv = document.getElementById('errorList');
+        let lang = document.getElementById('langSelect').value;
+        let selectedList = db[partName] ? db[partName] : db["Standard"];
+        listDiv.innerHTML = ""; 
+        
+        // İlgili ürünün hata listesini döngü ile ekrana buton olarak basar
+        selectedList.forEach((err, index) => {
+            let subtitle = lang === 'de' ? "" : (err[lang] || "");
+            listDiv.innerHTML += `
+                <div class="error-item">
+                    <div class="error-name"><strong>${err.de}</strong><span>${subtitle}</span></div>
+                    <div class="counter">
+                        <button class="btn-count" onclick="updateCount('err_${index}', -1)">-</button>
+                        <input type="number" id="err_${index}" class="count-input" value="0" min="0" inputmode="numeric">
+                        <button class="btn-count" onclick="updateCount('err_${index}', 1)">+</button>
+                    </div>
+                </div>`;
+        });
+        window.scrollTo(0, 0); // Form açıldığında sayfayı en üste kaydırır
+    }
 
-            // window.onload fonksiyonunun en altına ekle 
-            let lastModified = new Date(document.lastModified);
-            let formattedDate = lastModified.toLocaleDateString('tr-TR') + " " + 
-                    lastModified.toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'});
-            document.getElementById('version-tag').innerText = "v1.0.4 - " + formattedDate;
+    /**
+     * Formdan tekrar Parça Seçim Panosuna geri döndürür.
+     */
+    function goBack() {
+        document.getElementById('form-view').style.display = 'none';
+        document.getElementById('dashboard-view').style.display = 'block';
+        activePart = "";
+    }
 
-            
-            showSetup();
+    /**
+     * Artı ve Eksi Butonları İçin Sayaç Fonksiyonu
+     * Değerin 0'ın altına inmesini engeller.
+     */
+    function updateCount(id, val) {
+        let input = document.getElementById(id);
+        let current = parseInt(input.value) || 0;
+        if(current + val >= 0) input.value = current + val; 
+    }
 
-            
+    /**
+     * Makine datalist (açılır otomatik tamamlama listesi) öğelerini doldurur.
+     */
+    function loadMachineList() {
+        let datalist = document.getElementById('machineList');
+        datalist.innerHTML = "";
+        baseMachines.forEach(mac => { 
+            let option = document.createElement('option'); 
+            option.value = mac; 
+            datalist.appendChild(option); 
+        });
+    }
+
+    /**
+     * Kullanıcı sağ üstten dil değiştirdiğinde tetiklenir.
+     */
+    function changeLanguage() {
+        let selected = document.getElementById('langSelect').value;
+        localStorage.setItem('appLang', selected);
+        applyTranslations(selected);
+        
+        // Eğer bir hata formunun içindeysek, formu seçili dilde yeniden oluştur
+        if(activePart !== "") openForm(activePart); 
+    }
+
+    /**
+     * ÇEVİRİ MOTORU (Tam Kapsamlı): Ekrandaki tüm statik metinleri (DOM) anında çevirir.
+     */
+    function applyTranslations(lang) {
+        let t = i18n[lang] || i18n['de'];
+        
+        // Başlıklar ve Açıklamalar
+        document.getElementById('lbl_header_sub').innerText = t.header_sub;
+        document.getElementById('lbl_inst_title').innerText = t.inst_title; // HATA GİDERİLDİ
+        document.getElementById('lbl_setup_title').innerText = t.setup_title;
+        document.getElementById('lbl_setup_desc').innerText = t.setup_desc; // HATA GİDERİLDİ
+        
+        // Setup Form Elementleri
+        document.getElementById('lbl_setup_date').innerText = t.s_date;
+        document.getElementById('lbl_setup_shift').innerText = t.s_shift;
+        document.getElementById('lbl_setup_pers').innerText = t.s_pers;
+        document.getElementById('lbl_setup_mac').innerText = t.s_mac;
+        document.getElementById('lbl_setup_bau').innerText = t.s_bau;
+        document.getElementById('btn_start').innerText = t.start;
+        
+        // Hata Formu Elementleri
+        document.getElementById('lbl_back').innerText = t.back;
+        document.getElementById('btn_submit_main').innerText = t.submit;
+        
+        // Ana Sayfa Kart Alt Başlıkları
+        document.getElementById('sub_1').innerText = t.c1; document.getElementById('sub_2').innerText = t.c2;
+        document.getElementById('sub_3').innerText = t.c3; document.getElementById('sub_4').innerText = t.c4;
+        document.getElementById('sub_5').innerText = t.c5; document.getElementById('sub_6').innerText = t.c6;
+
+        // Footer (Alt Bilgi Çubuğu)
+        document.getElementById('lbl_foot_date').innerText = t.foot_date;
+        document.getElementById('lbl_foot_shift').innerText = t.foot_shift;
+        document.getElementById('lbl_foot_pers').innerText = t.foot_pers;
+        document.getElementById('lbl_foot_mac').innerText = t.foot_mac;
+        document.getElementById('lbl_foot_bau').innerText = t.foot_bau;
+
+        // Modal (Onay Ekranı)
+        document.getElementById('lbl_mod_title').innerText = t.mod_title;
+        document.getElementById('lbl_mod_date').innerText = t.mod_date;
+        document.getElementById('lbl_mod_shift').innerText = t.mod_shift;
+        document.getElementById('lbl_mod_pers').innerText = t.mod_pers;
+        document.getElementById('lbl_mod_mac').innerText = t.mod_mac;
+        document.getElementById('lbl_mod_bau').innerText = t.mod_bau;
+        document.getElementById('lbl_mod_cat').innerText = t.mod_cat;
+        document.getElementById('lbl_mod_tot').innerText = t.mod_tot;
+        document.getElementById('btn_mod_cancel').innerText = t.mod_cancel;
+        document.getElementById('btn_mod_confirm').innerText = t.mod_confirm;
+    }
+
+    /**
+     * Hata Kaydet (Speichern) Butonuna Basıldığında Modal Ekranını Çıkarır.
+     * Sayfadaki tüm inputları tarayıp "Toplam Hata" sayısını gösterir.
+     */
+    function showModal() {
+        let total = 0;
+        document.querySelectorAll('.count-input').forEach(input => { total += parseInt(input.value) || 0; });
+        
+        // Localstorage'daki verileri onay ekranına bas
+        document.getElementById('modDatum').innerText = localStorage.getItem('savedDate');
+        document.getElementById('modSchicht').innerText = localStorage.getItem('savedShift');
+        document.getElementById('modPers').innerText = localStorage.getItem('savedPersnr');
+        document.getElementById('modMaschine').innerText = localStorage.getItem('savedMaschine') || "-";
+        document.getElementById('modBauteilNr').innerText = localStorage.getItem('savedBauteilnr') || "-";
+        document.getElementById('modKategori').innerText = activePart;
+        document.getElementById('modTotalError').innerText = total;
+        
+        // Modal'ı görünür yap
+        document.getElementById('confirmModal').style.display = 'flex'; 
+    }
+
+    /**
+     * Onay Ekranını Kapatır (İptal Durumu)
+     */
+    function closeModal() { 
+        document.getElementById('confirmModal').style.display = 'none'; 
+    }
+
+    /**
+     * YENİ ALTYAPI: V1.1.0 VERİTABANI İÇİN VERİ PAKETLEME (MOCK) SİSTEMİ
+     * İlişkisel Veritabanı (Star Schema) yapısına uygun veri hazırlayıcı.
+     */
+    function submitData() {
+        let lang = document.getElementById('langSelect').value;
+        let t = i18n[lang];
+
+        // 1. Ana Yük Paketini (Payload) Hazırla
+        let formData = {
+            date: localStorage.getItem('savedDate'),
+            shift: localStorage.getItem('savedShift'),
+            persnr: localStorage.getItem('savedPersnr'),
+            machine: localStorage.getItem('savedMaschine'),
+            part: activePart,
+            totalErrors: 0,
+            errorDetails: [] // HATA DETAYLARI BURAYA DİZİ OLARAK EKLENECEK
         };
 
-        function showSetup() {
-            document.getElementById('dashboard-view').style.display = 'none';
-            document.getElementById('form-view').style.display = 'none';
-            document.getElementById('setup-view').style.display = 'flex';
-        }
-
-        function startApp() {
-            let dat = document.getElementById('inp_date').value;
-            let shf = document.getElementById('inp_shift').value;
-            let pnr = document.getElementById('inp_persnr').value;
-            let mac = document.getElementById('inp_maschine').value;
-            let bau = document.getElementById('inp_bauteilnr').value;
-
-            if(!pnr) { alert("Lütfen Personel Numaranızı giriniz!"); return; }
-
-            // --- YENİ: MAKİNE FORMATI VE LİSTE KONTROLÜ ---
-            if(mac !== "") {
-                // 1. Kural: Format Kontrolü (Örn: 400-2)
-                let formatKurali = /^\d{3,4}-\d{1,2}$/;
-                if(!formatKurali.test(mac)) {
-                    alert("Makine numarası formatı hatalı! \nLütfen araya tire koyarak giriniz (Örn: 400-2 veya 1100-1)");
-                    return; 
-                }
-
-                // 2. Kural: Kayıtlı Liste Kontrolü (Hibrit Onay)
-                if(!baseMachines.includes(mac)) {
-                    // Listede yoksa operatöre sor
-                    let eminMisiniz = confirm("⚠ DİKKAT: '" + mac + "' numaralı makine kayıtlı listede bulunamadı!\n\nHatalı yazmış olabilir misiniz? Yeni bir makine ise 'Tamam'a, düzeltmek için 'İptal'e basınız.\n\n(Achtung: Maschine nicht gelistet. Möchten Sie trotzdem fortfahren?)");
-                    
-                    if(!eminMisiniz) {
-                        return; // Operatör İptal'e basarsa işlemi durdur ve formda kal.
-                    }
-                }
+        let total = 0;
+        let errorInputs = document.querySelectorAll('.count-input');
+        
+        // 2. Ekrandaki tüm inputları (sayıcıları) tara
+        errorInputs.forEach(input => {
+            let count = parseInt(input.value) || 0;
+            
+            // SADECE SIFIRDAN BÜYÜK (Girili) HATALARI PAKETE DAHİL ET! (Minimalist yapı)
+            if (count > 0) {
+                total += count;
+                
+                // Input ID'sinden (örn: err_3) index numarasını çek
+                let index = input.id.split('_')[1];
+                let selectedList = db[activePart] ? db[activePart] : db["Standard"];
+                let errorData = selectedList[index];
+                
+                // Detay Objesini oluştur ve "errorDetails" listesinin içine at
+                formData.errorDetails.push({
+                    errorId: "HATA_" + activePart.substring(0,3).toUpperCase() + "_" + index, // Örn: HATA_ÖLW_2
+                    errorNameDE: errorData.de, // Veritabanı sadece 1 dili anahtar olarak saklayabilir (veya sadece ID)
+                    count: count
+                });
             }
-            // ----------------------------------------------
+        });
 
-            localStorage.setItem('savedDate', dat);
-            localStorage.setItem('savedShift', shf);
-            localStorage.setItem('savedPersnr', pnr);
-            localStorage.setItem('savedMaschine', mac);
-            localStorage.setItem('savedBauteilnr', bau);
+        formData.totalErrors = total;
 
-            document.getElementById('val_date').innerText = dat;
-            document.getElementById('val_shift').innerText = shf.replace("schicht", ""); 
-            document.getElementById('val_pers').innerText = pnr;
-            document.getElementById('val_mac').innerText = mac || "-";
-            document.getElementById('val_bau').innerText = bau || "-";
-
-            document.getElementById('setup-view').style.display = 'none';
-            document.getElementById('dashboard-view').style.display = 'block';
-        }
-
-        function openForm(partName) {
-            activePart = partName;
-            document.getElementById('dashboard-view').style.display = 'none';
-            document.getElementById('form-view').style.display = 'block';
-            document.getElementById('form-title').innerText = partName;
-            
-            let listDiv = document.getElementById('errorList');
-            let lang = document.getElementById('langSelect').value;
-            let selectedList = db[partName] ? db[partName] : db["Standard"];
-            listDiv.innerHTML = ""; 
-            
-            selectedList.forEach((err, index) => {
-                let subtitle = lang === 'de' ? "" : (err[lang] || "");
-                listDiv.innerHTML += `
-                    <div class="error-item">
-                        <div class="error-name"><strong>${err.de}</strong><span>${subtitle}</span></div>
-                        <div class="counter">
-                            <button class="btn-count" onclick="updateCount('err_${index}', -1)">-</button>
-                            <input type="number" id="err_${index}" class="count-input" value="0" min="0" inputmode="numeric">
-                            <button class="btn-count" onclick="updateCount('err_${index}', 1)">+</button>
-                        </div>
-                    </div>`;
-            });
-            window.scrollTo(0, 0); 
-        }
-
-        function goBack() {
-            document.getElementById('form-view').style.display = 'none';
-            document.getElementById('dashboard-view').style.display = 'block';
-            activePart = "";
-        }
-
-        function updateCount(id, val) {
-            let input = document.getElementById(id);
-            let current = parseInt(input.value) || 0;
-            if(current + val >= 0) input.value = current + val; 
-        }
-
-        function loadMachineList() {
-            let datalist = document.getElementById('machineList');
-            datalist.innerHTML = "";
-            baseMachines.forEach(mac => { let option = document.createElement('option'); option.value = mac; datalist.appendChild(option); });
-        }
-
-        function changeLanguage() {
-            let selected = document.getElementById('langSelect').value;
-            localStorage.setItem('appLang', selected);
-            applyTranslations(selected);
-            if(activePart !== "") openForm(activePart); 
-        }
-
-        function applyTranslations(lang) {
-            let t = i18n[lang] || i18n['de'];
-            document.getElementById('lbl_header_sub').innerText = t.header_sub;
-            document.getElementById('lbl_inst_title').innerText = t.inst_title;
-            document.getElementById('lbl_setup_title').innerText = t.setup_title;
-            document.getElementById('lbl_setup_date').innerText = t.s_date;
-            document.getElementById('lbl_setup_shift').innerText = t.s_shift;
-            document.getElementById('lbl_setup_pers').innerText = t.s_pers;
-            document.getElementById('lbl_setup_mac').innerText = t.s_mac;
-            document.getElementById('lbl_setup_bau').innerText = t.s_bau;
-            document.getElementById('btn_start').innerText = t.start;
-            document.getElementById('lbl_back').innerText = t.back;
-            document.getElementById('btn_submit_main').innerText = t.submit;
-            document.getElementById('sub_1').innerText = t.c1; document.getElementById('sub_2').innerText = t.c2;
-            document.getElementById('sub_3').innerText = t.c3; document.getElementById('sub_4').innerText = t.c4;
-            document.getElementById('sub_5').innerText = t.c5; document.getElementById('sub_6').innerText = t.c6;
-        }
-
-        function showModal() {
-            let total = 0;
-            document.querySelectorAll('.count-input').forEach(input => { total += parseInt(input.value) || 0; });
-            document.getElementById('modDatum').innerText = localStorage.getItem('savedDate');
-            document.getElementById('modSchicht').innerText = localStorage.getItem('savedShift');
-            document.getElementById('modPers').innerText = localStorage.getItem('savedPersnr');
-            document.getElementById('modMaschine').innerText = localStorage.getItem('savedMaschine') || "-";
-            document.getElementById('modBauteilNr').innerText = localStorage.getItem('savedBauteilnr') || "-";
-            document.getElementById('modKategori').innerText = activePart;
-            document.getElementById('modTotalError').innerText = total;
-            document.getElementById('confirmModal').style.display = 'flex'; 
-        }
-
-        function closeModal() { document.getElementById('confirmModal').style.display = 'none'; }
-
-        function submitData() {
-            alert("Kayıt veritabanı adımında aktif edilecek.");
-            closeModal();
-            goBack(); 
-        }
+        // ŞİMDİLİK VERİTABANINA GÖNDERMEDEN KONSOLA YAZDIR (MOCK - TAKLİT)
+        console.log("🚀 [VERİTABANI MOCK] Gönderilecek JSON Paketi:");
+        console.log(JSON.stringify(formData, null, 2));
+        
+        // Başarılı uyarısını ver ve formdan çık
+        alert(t.al_db_mock + "\n\nLog: " + total + " Fehler / Hata.");
+        
+        closeModal();
+        goBack(); 
+    }
  
 // ========================================================================= //
 // 🔺 MODÜL 4 BİTİŞ 🔺                                                       //
 // ========================================================================= //
-    </script>
+</script>
 </body>
 </html>
