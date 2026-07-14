@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BBP - Quality Control System</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <div class="warning-icon">⚠</div>
+            <div class="header-title">
+                <h1>Fehlersammelkarte</h1>
+                <p id="lbl_header_sub">Hata Kodu Seçimi</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="btn-settings" onclick="showSetup()" title="Ayarlar">⚙️</button>
+            <div class="lang-switcher">
+                <select id="langSelect" onchange="changeLanguage()">
+                    <option value="de">DE</option>
+                    <option value="tr">TR</option>
+                    <option value="en">EN</option>
+                    <option value="ro">RO</option>
+                    <option value="ru">RU</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div id="setup-view">
+            <div class="setup-card">
+                <h2 id="lbl_setup_title">Willkommen / Hoş Geldiniz</h2>
+                <p id="lbl_setup_desc">Lütfen vardiya bilgilerinizi teyit edin.</p>
+                <div class="setup-row">
+                    <div class="setup-group">
+                        <label id="lbl_setup_date">Datum / Tarih</label>
+                        <input type="date" id="inp_date">
+                    </div>
+                    <div class="setup-group">
+                        <label id="lbl_setup_shift">Schicht / Vardiya</label>
+                        <select id="inp_shift">
+                            <option value="Frühschicht">Frühschicht</option>
+                            <option value="Spätschicht">Spätschicht</option>
+                            <option value="Nachtschicht">Nachtschicht</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="setup-row">
+                    <div class="setup-group">
+                        <label id="lbl_setup_pers">Pers.Nr / Personel No *</label>
+                        <input type="number" id="inp_persnr" placeholder="Örn: 1234">
+                    </div>
+                    <div class="setup-group">
+                        <label id="lbl_setup_mac">Maschine / Makine Kodu</label>
+                        <input type="text" id="inp_maschine" list="machineList" placeholder="Örn: 850-2" autocomplete="off">
+                        <datalist id="machineList"></datalist>
+                    </div>
+                </div>
+                <div class="setup-group" style="margin-bottom: 0;">
+                    <label id="lbl_setup_bau">Bauteilnr / Ürün Kodu</label>
+                    <input type="text" id="inp_bauteilnr" placeholder="Örn: A12345678" autocomplete="off">
+                </div>
+                <button class="btn-start" onclick="startApp()" id="btn_start">Start / Başla</button>
+            </div>
+        </div>
+
+        <div id="dashboard-view">
+            <div class="instruction">
+                <h2 id="lbl_inst_title">Bitte Bauteil Auswählen / Parça Tipi Seçin</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card c1" onclick="openForm('Ölwanne')"><div class="badge">1</div><div class="card-img-wrapper">🛢️</div><h3 class="card-title">Ölwanne</h3><div class="card-subtitle" id="sub_1">Yağ Karteri</div></div>
+                <div class="card c2" onclick="openForm('Halter Luftfilter')"><div class="badge">2</div><div class="card-img-wrapper">💨</div><h3 class="card-title">Halter Luftfilter</h3><div class="card-subtitle" id="sub_2">Hava Filtresi Tutucu</div></div>
+                <div class="card c3" onclick="openForm('Windlaut')"><div class="badge">3</div><div class="card-img-wrapper">🔊</div><h3 class="card-title">Windlaut</h3><div class="card-subtitle" id="sub_3">Ses Çıkış Elemanı</div></div>
+                <div class="card c4" onclick="openForm('Motorabdeckung Q-Tor')"><div class="badge">4</div><div class="card-img-wrapper">⚙️</div><h3 class="card-title">Motorabdeckung Q-Tor</h3><div class="card-subtitle" id="sub_4">Motor Kapağı Q-Tor</div></div>
+                <div class="card c5" onclick="openForm('Motorabdeckung')"><div class="badge">5</div><div class="card-img-wrapper">🛡️</div><h3 class="card-title">Motorabdeckung</h3><div class="card-subtitle" id="sub_5">Motor Kapağı</div></div>
+                <div class="card c6" onclick="openForm('Standard')"><div class="badge">6</div><div class="card-img-wrapper">📋</div><h3 class="card-title">Standard</h3><div class="card-subtitle" id="sub_6">Standart Hatalar</div></div>
+            </div>
+        </div>
+
+        <div id="form-view">
+            <button class="back-btn" onclick="goBack()">⬅ <span id="lbl_back">Zurück / Geri Dön</span></button>
+            <h2 class="form-header-title" id="form-title">Seçilen Ürün</h2>
+            <div id="errorList"></div>
+            <button type="button" class="btn-submit" onclick="showModal()" id="btn_submit_main">Speichern / Kaydet</button>
+        </div>
+    </div>
+
+    <footer style="position: relative;">
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_date">Datum</span><strong id="val_date">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_shift">Schicht</span><strong id="val_shift">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_pers">Pers.nr</span><strong id="val_pers">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_mac">Maschine</span><strong id="val_mac">-</strong></div></div>
+        <div class="footer-item"><div class="f-text"><span id="lbl_foot_bau">Bauteil</span><strong id="val_bau">-</strong></div></div>
+        <div id="version-tag" style="position: absolute; bottom: 5px; right: 10px; font-size: 10px; color: rgba(255,255,255,0.5);">v1.0.5 - Yükleniyor...</div>
+    </footer>
+    
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content">
+            <h3 id="lbl_mod_title">Kontrolle / Son Kontrol</h3>
+            <p><strong id="lbl_mod_date">Datum:</strong> <span id="modDatum"></span></p>
+            <p><strong id="lbl_mod_shift">Schicht:</strong> <span id="modSchicht"></span></p>
+            <p><strong id="lbl_mod_pers">Pers.nr:</strong> <span id="modPers"></span></p>
+            <p><strong id="lbl_mod_mac">Maschine:</strong> <span id="modMaschine"></span></p>
+            <p><strong id="lbl_mod_bau">Bauteilnr:</strong> <span id="modBauteilNr"></span></p>
+            <p><strong id="lbl_mod_cat">Kategorie:</strong> <span id="modKategori"></span></p>
+            <p><strong id="lbl_mod_tot">Gesamt:</strong> <span id="modTotalError" style="font-size: 18px; color: red; font-weight:bold;">0</span></p>
+            <div class="modal-actions">
+                <button onclick="closeModal()" id="btn_mod_cancel" style="background:#95a5a6;">Zurück / İptal</button>
+                <button onclick="submitData()" id="btn_mod_confirm" style="background:var(--success);">Bestätigen / Onayla</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/db.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
