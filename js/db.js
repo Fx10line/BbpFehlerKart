@@ -1,18 +1,34 @@
 /* ======================================================================
   VERİTABANI VE ÇEVİRİ MERKEZİ (db.js)
-  Programın hafızasıdır. Değerler 'const' (sabit) olarak tanımlanır,
-  yani sayfa yenilenene kadar bu liste değiştirilemez.
-======================================================================
+  ----------------------------------------------------------------------
+  Bu dosya uygulamanın "Hafıza Merkezi"dir (Master Data). 
+  Uygulamadaki tüm sabit metinler, hata listeleri ve makine numaraları 
+  buradan okunur. İleride yeni bir makine, yeni bir hata veya yeni 
+  bir ürün ekleneceğinde HTML veya ana JS kodlarına HİÇ DOKUNMADAN 
+  sadece bu dosyaya ekleme yapılır.
+====================================================================== */
+
+/* 1. MAKİNE LİSTESİ (Array / Dizi Kullanımı)
+  JavaScript'te köşeli parantez [] içine virgülle yazılarak oluşturulan listelere "Dizi" (Array) denir.
+  'const' (sabit) olarak tanımladık ki program çalışırken yanlışlıkla değiştirilemesin.
+  Program, kullanıcının girdiği makine numarasının geçerli olup olmadığını bu diziye bakarak anlar.
 */
+const baseMachines = [
+    "400-2", "400-3", "500-9", "600-4", "600-7", "650-2", "650-8", 
+    "800-1", "800-4", "850-2", "850-3", "850-4", "900-1", "1000-3", 
+    "1000-4", "1100-1", "1450-1", "1600-3", "1700-2", "1700-3"
+];
 
-// Geçerli Makine Listesi: Sistem sadece bu listedekileri uyarısız kabul eder.
-const baseMachines = ["400-2", "400-3", "500-9", "600-4", "600-7", "650-2", "650-8", "800-1", "800-4", "850-2", "850-3", "850-4", "900-1", "1000-3", "1000-4", "1100-1", "1450-1", "1600-3", "1700-2", "1700-3"];
-
-
-// Hata Kataloğu: Hangi parçanın hangi hataları olduğu JSON objesi şeklinde burada tutulur.
-// "Ölwanne": [ { de: "Almanca", tr: "Türkçe", ... } ] mantığıyla çalışır.
+/* 2. HATA KATALOĞU (Object / Nesne Kullanımı)
+  Süslü parantez {} ile başlayan yapılara "Nesne" (Object) denir. 
+  "Anahtar" : "Değer" mantığıyla çalışır. 
+  Burada anahtarlarımız parça isimleridir (Örn: "Ölwanne"). 
+  Değerler ise o parçaya ait hataların oluşturduğu bir listedir (Dizi []).
+*/
 const db = {
+    // KART 1: YAĞ KARTERİ HATALARI
     "Ölwanne": [ 
+        // Listedeki her bir eleman da kendi içinde 5 dil barındıran küçük bir nesnedir {}
         { de: "Ölwanne nicht dicht", tr: "Yağ karteri sızdırıyor", en: "Oil pan leaking", ro: "Baie de ulei neetanșă", ru: "Масляный поддон протекает" }, 
         { de: "Maschinen-/ Anlagenstörung", tr: "Makine/Tesis arızası", en: "Machine/Plant fault", ro: "Defecțiune mașină/instalație", ru: "Неисправность машины/установки" }, 
         { de: "Teile nicht voll", tr: "Parçalar tam değil", en: "Parts not full", ro: "Piese incomplete", ru: "Детали не полные" }, 
@@ -21,6 +37,8 @@ const db = {
         { de: "Schraube fehlt", tr: "Vida eksik", en: "Screw missing", ro: "Șurub lipsă", ru: "Отсутствует винт" }, 
         { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" } 
     ],
+    
+    // KART 2: HAVA FİLTRESİ TUTUCU HATALARI
     "Halter Luftfilter": [ 
         { de: "Formfehler: nicht vollständig", tr: "Form hatası: Tam değil", en: "Form error: incomplete", ro: "Eroare formă: incomplet", ru: "Ошибка формы: неполная" }, 
         { de: "Formfehler: Grat vorhanden", tr: "Form hatası: Çapak var", en: "Form error: Burr present", ro: "Eroare formă: Bavură prezentă", ru: "Ошибка формы: Присутствует заусенец" }, 
@@ -32,6 +50,8 @@ const db = {
         { de: "Buchse: nicht in Position", tr: "Burç: Pozisyonda değil", en: "Bushing: not in position", ro: "Bucșă: nu este pe poziție", ru: "Втулка: не на месте" }, 
         { de: "weißer Punkt (Variante 03/04): fehlt", tr: "Beyaz nokta: Eksik", en: "White dot: missing", ro: "Punct alb: lipsă", ru: "Белая точка: отсутствует" }
     ],
+
+    // KART 3: SES ÇIKIŞ ELEMANI HATALARI
     "Windlaut": [ 
         { de: "Weichkomponente: Anguss nicht entfernt", tr: "Yumuşak parça: Yolluk alınmamış", en: "Soft comp: Sprue not removed", ro: "Comp. moale: Canal de turnare neîndepărtat", ru: "Мягкий комп.: Литник не удален" }, 
         { de: "Weichkomponente: nicht vollständig", tr: "Yumuşak parça: Tam değil", en: "Soft comp: incomplete", ro: "Comp. moale: incomplet", ru: "Мягкий комп.: неполный" }, 
@@ -47,6 +67,8 @@ const db = {
         { de: "Pad: fehlt", tr: "Ped: Eksik", en: "Pad: missing", ro: "Pad: lipsă", ru: "Подушечка: отсутствует" }, 
         { de: "Clip: fehler", tr: "Klips: Hatalı", en: "Clip: Error", ro: "Clip: Eroare", ru: "Клипса: Ошибка" }
     ],
+
+    // KART 4: MOTOR KAPAĞI Q-TOR HATALARI
     "Motorabdeckung Q-Tor": [ 
         { de: "Formfehler: nicht voll ausgeformt", tr: "Form hatası: Tam şekil almamış", en: "Form error: not fully formed", ro: "Eroare formă: formată incomplet", ru: "Ошибка формы: сформирована неполностью" }, 
         { de: "Oberfläche: beschädigt/verkratzt", tr: "Yüzey: Hasarlı/Çizik", en: "Surface: damaged/scratched", ro: "Suprafață: deteriorată/zgâriată", ru: "Поверхность: повреждена/поцарапана" }, 
@@ -64,6 +86,8 @@ const db = {
         { de: "Vlies nicht geschweißt", tr: "Keçe kaynatılmamış", en: "Fleece not welded", ro: "Fleece nesudat", ru: "Флис не сварен" }, 
         { de: "Vlies Schweißfehler", tr: "Keçe kaynak hatası", en: "Fleece welding error", ro: "Eroare sudură fleece", ru: "Ошибка сварки флиса" }
     ],
+
+    // KART 5: MOTOR KAPAĞI (STANDART) HATALARI
     "Motorabdeckung": [ 
         { de: "Hartkomponente nicht voll", tr: "Sert parça tam değil", en: "Hard comp not full", ro: "Comp. dură incomplet", ru: "Твердый комп. не полный" }, 
         { de: "Oberflächenfehler", tr: "Yüzey hatası", en: "Surface defect", ro: "Defect de suprafață", ru: "Дефект поверхности" }, 
@@ -77,6 +101,8 @@ const db = {
         { de: "Anfahrausschuss", tr: "Başlangıç firesi", en: "Start-up scrap", ro: "Rebut de pornire", ru: "Пусковой брак" }, 
         { de: "Emblem beschädigt/verkratzt", tr: "Amblem hasarlı/çizik", en: "Emblem damaged/scratched", ro: "Emblemă deteriorată/zgâriată", ru: "Эмблема повреждена/поцарапана" }
     ],
+
+    // KART 6: STANDART HATALAR (Listede bulunamayan bir parça olursa güvenlik ağı olarak bu gösterilir)
     "Standard": [ 
         { de: "Hartkomponente nicht voll", tr: "Sert parça tam değil", en: "Hard comp not full", ro: "Comp. dură incomplet", ru: "Твердый комп. не полный" }, 
         { de: "Weichkomponente nicht voll", tr: "Yumuşak parça tam değil", en: "Soft comp not full", ro: "Comp. moale incomplet", ru: "Мягкий комп. не полный" }, 
@@ -94,22 +120,33 @@ const db = {
     ]
 };
 
-
-// Çeviri Havuzu: Arayüzdeki (menüler, butonlar vb.) tüm metinlerin karşılıkları.
+/* 3. ÇEVİRİ (i18n) SÖZLÜĞÜ
+  i18n, yazılım dünyasında "Internationalization" (Uluslararasılaştırma) kelimesinin kısaltmasıdır.
+  Burada her bir dil anahtarı ("tr", "de", "en" vb.) altında, arayüzdeki kelimelerin o dildeki karşılıkları tutulur.
+  HTML içindeki elementlerin ID'lerine göre ("s_date" = "Tarih" gibi) program bunları eşleştirir.
+*/
 const i18n = {
+    // TÜRKÇE ÇEVİRİLER
     "tr": { 
-        "header_sub": "Hata Kodu Seçimi", "setup_desc": "Lütfen vardiya bilgilerinizi teyit edin.", "setup_title": "Hoş Geldiniz", "inst_title": "Parça Tipi Seçin",
-        "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", "start": "Başla", 
+        "header_sub": "Hata Kodu Seçimi", 
+        "setup_desc": "Lütfen vardiya bilgilerinizi teyit edin.", 
+        "setup_title": "Hoş Geldiniz", 
+        "inst_title": "Parça Tipi Seçin", // Parça seçim ekranının başlığı
+        "s_date": "Tarih", "s_shift": "Vardiya", "s_pers": "Personel No *", "s_mac": "Makine Kodu", "s_bau": "Ürün Kodu", 
+        "start": "Başla", // Giriş ekranındaki buton
         "c1": "Yağ Karteri", "c2": "Hava Filtresi Tutucu", "c3": "Ses Çıkış Elemanı", "c4": "Motor Kapağı Q-Tor", "c5": "Motor Kapağı", "c6": "Standart Hatalar", 
         "back": "Geri Dön", "submit": "Kaydet / Gönder", 
         "mod_title": "Son Kontrol", "mod_tot": "Toplam Hata:", "mod_date": "Tarih:", "mod_shift": "Vardiya:", "mod_pers": "Pers.No:", "mod_mac": "Makine:", "mod_bau": "Ürün Kodu:", "mod_cat": "Kategori:",
-        "mod_cancel": "İptal", "mod_confirm": "Onayla",
+        "mod_cancel": "İptal", "mod_confirm": "Onayla", // Modal penceresindeki butonlar
         "foot_date": "Tarih", "foot_shift": "Vardiya", "foot_pers": "Pers.No", "foot_mac": "Makine", "foot_bau": "Ürün",
+        
+        // Uyarı mesajları (Alert / Confirm)
         "al_pers": "Lütfen Personel Numaranızı giriniz!", 
         "al_mac_fmt": "Makine numarası formatı hatalı! \nLütfen araya tire koyarak giriniz (Örn: 400-2)", 
         "al_mac_not": "DİKKAT: Makine kayıtlı listede bulunamadı!\nDevam etmek istiyor musunuz?",
         "al_db_mock": "Veri başarıyla paketlendi (Mock)! Konsolu kontrol edin."
     },
+    // ALMANCA ÇEVİRİLER
     "de": { 
         "header_sub": "Fehlercode-Auswahl", "setup_desc": "Bitte bestätigen Sie Ihre Schichtdaten.", "setup_title": "Willkommen", "inst_title": "Bitte Bauteil Auswählen",
         "s_date": "Datum", "s_shift": "Schicht", "s_pers": "Pers.Nr *", "s_mac": "Maschine", "s_bau": "Bauteilnr", "start": "Starten", 
@@ -123,6 +160,7 @@ const i18n = {
         "al_mac_not": "Achtung: Maschine nicht gelistet! Möchten Sie trotzdem fortfahren?",
         "al_db_mock": "Erfolgreich gepackt (Mock)! Überprüfen Sie die Konsole."
     },
+    // İNGİLİZCE ÇEVİRİLER
     "en": { 
         "header_sub": "Error Code Selection", "setup_desc": "Please confirm your shift details.", "setup_title": "Welcome", "inst_title": "Please Select Part Type",
         "s_date": "Date", "s_shift": "Shift", "s_pers": "Personnel No *", "s_mac": "Machine Code", "s_bau": "Product Code", "start": "Start", 
@@ -136,6 +174,7 @@ const i18n = {
         "al_mac_not": "Warning: Machine not listed! Do you want to continue?",
         "al_db_mock": "Successfully packaged (Mock)! Check the console."
     },
+    // ROMENCE ÇEVİRİLER
     "ro": { 
         "header_sub": "Selectare cod eroare", "setup_desc": "Vă rugăm să confirmați datele schimbului.", "setup_title": "Bun venit", "inst_title": "Selectați Tipul Piesei",
         "s_date": "Data", "s_shift": "Schimb", "s_pers": "Nr. Personal *", "s_mac": "Mașină", "s_bau": "Cod Produs", "start": "Start", 
@@ -149,6 +188,7 @@ const i18n = {
         "al_mac_not": "Atenție: Mașina nu este în listă! Continuați?",
         "al_db_mock": "Împachetat cu succes (Mock)! Verificați consola."
     },
+    // RUSÇA ÇEVİRİLER
     "ru": { 
         "header_sub": "Выбор кода ошибки", "setup_desc": "Пожалуйста, подтвердите данные смены.", "setup_title": "Добро пожаловать", "inst_title": "Выберите Тип Детали",
         "s_date": "Дата", "s_shift": "Смена", "s_pers": "Перс. номер *", "s_mac": "Машина", "s_bau": "Код продукта", "start": "Начать", 
