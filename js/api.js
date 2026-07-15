@@ -6,20 +6,23 @@
 ======================================================================
 */
 
+
 function submitData() {
     let lang = document.getElementById('langSelect').value;
     let t = i18n[lang];
 
-    // 1. Gönderilecek paketin dış iskeletini hazırlıyoruz (Kutuyu oluşturduk)
+    // 1. Gönderilecek paketin dış iskeletini hazırlıyoruz
     let formData = {
-        date: localStorage.getItem('savedDate'), // Hafızadan tarihi aldık
+        date: localStorage.getItem('savedDate'),
         shift: localStorage.getItem('savedShift'),
         persnr: localStorage.getItem('savedPersnr'),
         machine: localStorage.getItem('savedMaschine'),
-        part: activePart, // O an ekranda hangi parça açıksa
+        bauteilnr: localStorage.getItem('savedBauteilnr'), // YENİ EKLENEN SATIR: Eksik olan veri eklendi!
+        part: activePart, 
         totalErrors: 0,
-        errorDetails: [] // Hataların detaylarını bu listeye dolduracağız
+        errorDetails: [] 
     };
+
 
     let total = 0;
     // Ekranda "count-input" class'ına (sınıfına) sahip olan tüm inputları (sayıcıları) bul
