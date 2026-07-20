@@ -50,7 +50,25 @@ input[type="date"] { text-align: left; -webkit-appearance: none; }
 .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
 .card { border-radius: 12px; padding: 25px 20px; position: relative; cursor: pointer; text-align: center; border: 1px solid rgba(0,0,0,0.05); background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
 .badge { position: absolute; top: 15px; left: 15px; color: white; background: var(--header-bg); font-weight: bold; font-size: 16px; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-.card-img-wrapper { font-size: 50px; margin-bottom: 10px; }
+
+/* Resimleri saran ana çerçevenin yüksekliğini sabitliyoruz */
+.card-img-wrapper { 
+    height: 70px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 10px; 
+}
+
+/* İçine eklediğimiz resimlerin kuralları */
+.card-img-wrapper img {
+    max-width: 100%;    
+    max-height: 60px;   
+    object-fit: contain; 
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); 
+}
+
+
 .card-title { font-size: 17px; font-weight: bold; margin: 0; color: var(--text-dark); }
 .card-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 5px; }
 
